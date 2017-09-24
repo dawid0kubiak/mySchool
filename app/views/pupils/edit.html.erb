@@ -1,0 +1,33 @@
+<div class="page-header">
+  <h1>Edycja ucznia <%= @pupil.name %> <%= @pupil.lastname %></h1>
+</div>
+<%= render :partial => 'form' %>
+<div class="container">
+  <div class="page-header">
+    <h1>Przedmioty</h1>
+  </div>
+  <table data-toggle="table" data-search="true" >
+    <thead>
+    <tr>
+      <th>Nazwa przedmiotu</th>
+      <th>Nauczyciel prowadzący</th>
+      <th>Akcje</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @pupil.subjects.each do |subject| %>
+        <tr>
+          <td><%= subject.name %></td>
+          <td><%= subject.teacher %></td>
+          <td>
+            <%= link_to 'Pokaż', pupil_subject_path(@pupil, subject), class: 'btn btn-default btn-xs' %>
+            <%= link_to 'Edycja', edit_pupil_subject_path(@pupil), class: 'btn btn-default btn-xs' %>
+            <%= link_to 'Usuń', pupil_subject_path(@pupil), method: :delete,
+                        data: { :confirm => 'Jesteś pewien?' }, class: 'btn btn-xs btn-danger' %>
+          </td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <%= link_to 'Nowy', new_pupil_subject_path(@pupil), class: 'btn btn-primary' %>
+</div>
