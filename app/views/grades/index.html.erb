@@ -1,0 +1,32 @@
+<div class="page-header">
+  <h1>Oceny</h1>
+</div>
+<table data-toggle="table" data-search="true" >
+  <thead>
+    <tr>
+      <th>Krótka nazwa</th>
+      <th>Długa nazwa</th>
+      <th>Wartość</th>
+      <th>Akcje</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @grades.each do |grade| %>
+      <tr>
+        <td><%= grade.short_name %></td>
+        <td><%= grade.long_name %></td>
+        <td><%= grade.value %></td>
+        <td>
+          <%= link_to 'Pokaż', grade_path(grade), :class => 'btn btn-default btn-xs' %>
+          <%= link_to 'Edytuj', edit_grade_path(grade), :class => 'btn btn-default btn-xs' %>
+          <%= link_to 'Usuń', grade_path(grade),
+                      method: :delete,
+                      data: { confirm: 'Jesteś pewien?' },
+                      class: 'btn btn-xs btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Nowy', new_grade_path, :class => 'btn btn-primary' %>
