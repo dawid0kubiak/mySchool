@@ -1,6 +1,6 @@
 class SubjectsController < ApplicationController
   before_action :set_subject, only: [:show, :edit, :update, :destroy]
-   before_action :set_pupil
+   # before_action :set_pupil
 
   # GET /subjects
   # GET /subjects.json

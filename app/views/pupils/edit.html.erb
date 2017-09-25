@@ -11,7 +11,6 @@
     <tr>
       <th>Nazwa przedmiotu</th>
       <th>Nauczyciel prowadzący</th>
-      <th>Akcje</th>
     </tr>
     </thead>
     <tbody>
@@ -19,15 +18,10 @@
         <tr>
           <td><%= subject.name %></td>
           <td><%= subject.teacher %></td>
-          <td>
-            <%= link_to 'Pokaż', pupil_subject_path(@pupil, subject), class: 'btn btn-default btn-xs' %>
-            <%= link_to 'Edycja', edit_pupil_subject_path(@pupil), class: 'btn btn-default btn-xs' %>
-            <%= link_to 'Usuń', pupil_subject_path(@pupil), method: :delete,
-                        data: { :confirm => 'Jesteś pewien?' }, class: 'btn btn-xs btn-danger' %>
-          </td>
+
         </tr>
     <% end %>
     </tbody>
   </table>
-  <%= link_to 'Nowy', new_pupil_subject_path(@pupil), class: 'btn btn-primary' %>
+  <%= link_to 'Przedmioty', subject_path(@pupil), class: 'btn btn-primary' %>
 </div>

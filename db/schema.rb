@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170923113800) do
+ActiveRecord::Schema.define(version: 20170925132152) do
+
+  create_table "grades", force: :cascade do |t|
+    t.string "short_name"
+    t.string "long_name"
+    t.string "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "pupils", force: :cascade do |t|
     t.string "name"

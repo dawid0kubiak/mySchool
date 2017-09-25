@@ -17,3 +17,8 @@
 //= require twitter/bootstrap
 //= require bootstrap-table
 //= require_tree .
+
+
+$(document).on('turbolinks:load', function () {
+    $('[data-toggle="table"]').bootstrapTable();
+});
