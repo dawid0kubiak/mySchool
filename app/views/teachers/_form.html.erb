@@ -3,8 +3,7 @@
       <%= f.text_field :name, label: 'Imię' %>
       <%= f.text_field :lastname, label: 'Nazwisko' %>
       <%= f.email_field :email, label: 'e-mail' %>
-      <%= f.text_field :phone, label: 'telefon' %>
-      <%= f.date_field :phone, label: 'telefon' %>
+      <%= f.phone_field :phone, label: 'telefon' %>
       <%= f.submit 'Zapisz', class: 'btn btn-primary' %>
       <%= link_to 'Anuluj', pupils_path, :class => 'btn btn-default' %>
   <% end %>
