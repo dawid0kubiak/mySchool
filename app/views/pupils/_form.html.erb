@@ -1,3 +1,4 @@
+<div class="container">
 <%= bootstrap_form_for(@pupil) do |f| %>
     <%= f.text_field :name, label: 'Imię' %>
     <%= f.text_field :lastname, label: 'Nazwisko' %>
@@ -5,3 +6,4 @@
     <%= f.submit 'Zapisz', class: 'btn btn-primary' %>
     <%= link_to 'Anuluj', pupils_path, :class => 'btn btn-default' %>
 <% end %>
+</div>

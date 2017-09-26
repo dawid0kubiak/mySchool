@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h1>Teachers</h1>
+  <h1>Nauczyciele</h1>
 </div>
 <%= link_to 'Nowy nauczyciel', new_teacher_path, class: 'btn btn-primary' %>
 <table data-toggle="table" data-search="true">
@@ -21,9 +21,10 @@
         <td><a href="mailto:<%= teacher.email %>" ><%= teacher.email %></a></td>
         <td><%= teacher.phone %></td>
         <td>
-          <%= link_to 'Show', teacher %>
-          <%= link_to 'Edit', edit_teacher_path(teacher) %>
-          <%= link_to 'Destroy', teacher, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+          <%= link_to 'Pokaż', teacher, class: 'btn btn-default btn-xs' %>
+          <%= link_to 'Edytuj', edit_teacher_path(teacher), class: 'btn btn-default btn-xs' %>
+          <%= link_to 'Usuń', teacher, method: :delete, data: {:confirm => 'Jesteś pewien?'},
+                      class: 'btn btn-xs btn-danger' %></td>
       </tr>
   <% end %>
   </tbody>

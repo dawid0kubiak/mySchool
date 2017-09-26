@@ -1,37 +1,12 @@
-<%= form_with(model: teacher, local: true) do |form| %>
-  <% if teacher.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(teacher.errors.count, "error") %> prohibited this teacher from being saved:</h2>
-
-      <ul>
-      <% teacher.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
+<div class="container">
+  <%= bootstrap_form_for(@teacher) do |f| %>
+      <%= f.text_field :name, label: 'Imię' %>
+      <%= f.text_field :lastname, label: 'Nazwisko' %>
+      <%= f.email_field :email, label: 'e-mail' %>
+      <%= f.text_field :phone, label: 'telefon' %>
+      <%= f.date_field :phone, label: 'telefon' %>
+      <%= f.submit 'Zapisz', class: 'btn btn-primary' %>
+      <%= link_to 'Anuluj', pupils_path, :class => 'btn btn-default' %>
   <% end %>
+</div>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :teacher_name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :lastname %>
-    <%= form.text_field :lastname, id: :teacher_lastname %>
-  </div>
-
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email, id: :teacher_email %>
-  </div>
-
-  <div class="field">
-    <%= form.label :phone %>
-    <%= form.text_field :phone, id: :teacher_phone %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>

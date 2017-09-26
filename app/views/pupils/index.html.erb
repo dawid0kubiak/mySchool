@@ -20,7 +20,7 @@
         <td>
           <%= link_to 'Pokaż', pupil_path(pupil), class: 'btn btn-default btn-xs' %>
           <%= link_to 'Edytuj', edit_pupil_path(pupil), class: 'btn btn-default btn-xs' %>
-          <%= link_to 'Usuń', pupil_path(pupil), :method => :delete, data: {:confirm => 'Jesteś pewien?'},
+          <%= link_to 'Usuń', pupil_path(pupil), method: :delete, data: {:confirm => 'Jesteś pewien?'},
                       class: 'btn btn-xs btn-danger' %>
         </td>
       </tr>
