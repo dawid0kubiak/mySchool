@@ -5,6 +5,7 @@ class CreateGrades < ActiveRecord::Migration[5.1]
       t.string :long_name
       t.string :value
 
+
       t.timestamps
     end
   end
