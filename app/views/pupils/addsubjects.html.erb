@@ -1,0 +1,30 @@
+<div class="page-header">
+  <h1>Przedmioty</h1>
+</div>
+<table data-toggle="table" data-search="true" >
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>Nazwa przedmiotu</th>
+      <th>Nauczyciel</th>
+      <th>Akcje</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @subjects.each do |subject| %>
+      <tr>
+        <td><%= link_to subject.id, subject_path(subject) %></td>
+        <td><%= subject.name %></td>
+        <td><%= subject.teacher %></td>
+        <td>
+          <%= link_to 'Pokaż', subject_path(subject), class: 'btn btn-default btn-xs' %>
+          <%= link_to 'Edycja', edit_subject_path(subject), class: 'btn btn-default btn-xs' %>
+          <%= link_to'Usuń', subject_path(subject), method: :delete,
+                     data: { confirm: 'Jesteś pewien?' }, class: 'btn btn-xs btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to "Nowy", new_subject_path, class: 'btn btn-primary' %>
