@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :subjects
   resources :pupils do
     get :subjects
-    get :addsubjects
+    post :addsubjects
   end
   devise_for :users
   root "pupils#index"

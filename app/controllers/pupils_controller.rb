@@ -69,8 +69,8 @@ class PupilsController < ApplicationController
   end
 
   def addsubjects
-    subjects = params
-
+    subjects = params[:subjects]
+puts
   end
 
   private

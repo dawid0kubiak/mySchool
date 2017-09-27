@@ -18,7 +18,7 @@
             <td><%= subject.teacher %></td>
             <td>
 
-              <%= check_box_tag(:pet_dog) %>
+              <%= check_box_tag  'subjects[]', subject.id, false %>
             </td>
           </tr>
       <% end %>
