@@ -1,0 +1,29 @@
+<div class="page-header">
+  <h1>Przedmioty</h1>
+</div>
+<%= form_tag(controller: "pupils", action: "addsubjects") do %>
+    <%= submit_tag("Zapisz") %>
+    <table data-toggle="table" data-search="true">
+      <thead>
+      <tr>
+        <th>Nazwa przedmiotu</th>
+        <th>Nauczyciel</th>
+        <th>Dodaj</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @subjects.each do |subject| %>
+          <tr>
+            <td><%= subject.name %></td>
+            <td><%= subject.teacher %></td>
+            <td>
+
+              <%= check_box_tag(:pet_dog) %>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+<% end %>
+

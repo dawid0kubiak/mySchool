@@ -29,8 +29,7 @@ class SubjectsController < ApplicationController
 
     respond_to do |format|
       if @subject.save
-        @pupil.subjects << @subject
-        format.html { redirect_to edit_pupil_path @pupil, notice: 'Subject was successfully created.' }
+        format.html { redirect_to subjects_path , notice: 'Subject was successfully created.' }
         format.json { render :show, status: :created, location: @subject }
       else
         format.html { render :new }

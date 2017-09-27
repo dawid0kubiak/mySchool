@@ -62,6 +62,17 @@ class PupilsController < ApplicationController
     end
   end
 
+  def subjects
+    @pupil = Pupil.find(params[:pupil_id])
+    @subjects = Subject.all
+
+  end
+
+  def addsubjects
+    subjects = params
+
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_pupil
