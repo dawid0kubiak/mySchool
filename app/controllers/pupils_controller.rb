@@ -1,5 +1,5 @@
 class PupilsController < ApplicationController
-  before_action :set_pupil, only: [:show, :edit, :update, :destroy]
+  before_action :set_pupil, only: [:show, :edit, :update, :destroy, :subjects, :addsubjects]
 
   # GET /pupils
   # GET /pupils.json
@@ -63,20 +63,24 @@ class PupilsController < ApplicationController
   end
 
   def subjects
-    @pupil = Pupil.find(params[:pupil_id])
     @subjects = Subject.all
-
   end
 
   def addsubjects
     subjects = params[:subjects]
-puts
+    @pupil.subjects = Subject.where(id: subjects)
+    redirect_to edit_pupil_path(@pupil)
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_pupil
-      @pupil = Pupil.find(params[:id])
+if params[:id].nil?
+  id_pupil = params[:pupil_id]
+else
+  id_pupil = params[:id]
+end
+      @pupil = Pupil.find(id_pupil)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
