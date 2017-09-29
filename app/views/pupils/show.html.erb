@@ -12,6 +12,8 @@
     <tr>
       <th>Nazwa przedmiotu</th>
       <th>Nauczyciel prowadzący</th>
+      <th>Oceny</th>
+      <th>Średnia</th>
     </tr>
     </thead>
     <tbody>
@@ -19,8 +21,22 @@
         <tr>
           <td><%= subject.name %></td>
           <td><%= subject.teacher %></td>
+          <td>
+            <% @average = 0 %>
+            <% subject.grades.each do |grade| %>
+            <%= grade.short_name %>,
+            <% @average += grade.value %>
+            <% end %>
+          </td>
+          <td>
+            <%= @average/subject.grades.count %>
+          </td>
         </tr>
     <% end %>
     </tbody>
   </table>
 </div>
+
+Oceny:<br>
+
+

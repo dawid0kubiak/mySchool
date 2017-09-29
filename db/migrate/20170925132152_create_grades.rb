@@ -3,7 +3,7 @@ class CreateGrades < ActiveRecord::Migration[5.1]
     create_table :grades do |t|
       t.string :short_name
       t.string :long_name
-      t.string :value
+      t.integer :value
 
 
       t.timestamps

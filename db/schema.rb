@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 20170926130205) do
   create_table "grades", force: :cascade do |t|
     t.string "short_name"
     t.string "long_name"
-    t.string "value"
+    t.integer "value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -77,7 +77,6 @@ ActiveRecord::Schema.define(version: 20170926130205) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
