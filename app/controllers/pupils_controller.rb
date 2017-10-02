@@ -29,11 +29,11 @@ class PupilsController < ApplicationController
 
     respond_to do |format|
       if @pupil.save
-        format.html { redirect_to @pupil, notice: 'Pupil was successfully created.' }
-        format.json { render :show, status: :created, location: @pupil }
+        format.html {redirect_to @pupil, notice: 'Pupil was successfully created.'}
+        format.json {render :show, status: :created, location: @pupil}
       else
-        format.html { render :new }
-        format.json { render json: @pupil.errors, status: :unprocessable_entity }
+        format.html {render :new}
+        format.json {render json: @pupil.errors, status: :unprocessable_entity}
       end
     end
   end
@@ -43,11 +43,11 @@ class PupilsController < ApplicationController
   def update
     respond_to do |format|
       if @pupil.update(pupil_params)
-        format.html { redirect_to @pupil, notice: 'Pupil was successfully updated.' }
-        format.json { render :show, status: :ok, location: @pupil }
+        format.html {redirect_to @pupil, notice: 'Pupil was successfully updated.'}
+        format.json {render :show, status: :ok, location: @pupil}
       else
-        format.html { render :edit }
-        format.json { render json: @pupil.errors, status: :unprocessable_entity }
+        format.html {render :edit}
+        format.json {render json: @pupil.errors, status: :unprocessable_entity}
       end
     end
   end
@@ -57,8 +57,8 @@ class PupilsController < ApplicationController
   def destroy
     @pupil.destroy
     respond_to do |format|
-      format.html { redirect_to pupils_url, notice: 'Pupil was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html {redirect_to pupils_url, notice: 'Pupil was successfully destroyed.'}
+      format.json {head :no_content}
     end
   end
 
@@ -73,18 +73,18 @@ class PupilsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_pupil
-if params[:id].nil?
-  id_pupil = params[:pupil_id]
-else
-  id_pupil = params[:id]
-end
-      @pupil = Pupil.find(id_pupil)
+  # Use callbacks to share common setup or constraints between actions.
+  def set_pupil
+    if params[:id].nil?
+      id_pupil = params[:pupil_id]
+    else
+      id_pupil = params[:id]
     end
+    @pupil = Pupil.find(id_pupil)
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def pupil_params
-      params.require(:pupil).permit(:name, :lastname, :note)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def pupil_params
+    params.require(:pupil).permit(:name, :lastname, :note)
+  end
 end

@@ -1,8 +1,8 @@
 <div class="container">
-<%= bootstrap_form_for(@subject) do |f| %>
-    <%= f.text_field :name, label: 'Imię' %>
-    <%= f.text_field :teacher, label: 'Nauczyciel' %>
-    <%= f.submit 'Zapisz', class: 'btn btn-primary' %>
-    <%= link_to 'Anuluj', pupils_path, class: 'btn btn-default' %>
-<% end %>
+  <%= bootstrap_form_for(@subject) do |f| %>
+      <%= f.text_field :name, label: 'Nazwa Przedmiotu' %>
+      <%= f.collection_select :teachers, Teacher.all, :id, :name_displayed %>
+      <%= f.submit 'Zapisz', class: 'btn btn-primary' %>
+      <%= link_to 'Anuluj', pupils_path, class: 'btn btn-default' %>
+  <% end %>
 </div>

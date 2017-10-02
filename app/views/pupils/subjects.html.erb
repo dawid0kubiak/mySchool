@@ -18,8 +18,8 @@
             <td><%= subject.teacher %></td>
             <td>
 
-              <%= check_box_tag  'subjects[]', subject.id,
-                                 !@pupil.subjects.where(id: subject.id).count.zero? %>
+              <%= check_box_tag 'subjects[]', subject.id,
+                                !@pupil.subjects.where(id: subject.id).count.zero? %>
             </td>
           </tr>
       <% end %>

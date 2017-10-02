@@ -7,7 +7,7 @@
   <div class="page-header">
     <h1>Przedmioty</h1>
   </div>
-  <table data-toggle="table" data-search="true" >
+  <table data-toggle="table" data-search="true">
     <thead>
     <tr>
       <th>Nazwa przedmiotu</th>
@@ -22,21 +22,17 @@
           <td><%= subject.name %></td>
           <td><%= subject.teacher %></td>
           <td>
-            <% @average = 0 %>
             <% subject.grades.each do |grade| %>
-            <%= grade.short_name %>,
-            <% @average += grade.value %>
+                <%= grade.short_name %>,
             <% end %>
           </td>
           <td>
-            <%= @average/subject.grades.count %>
+            <%= subject.grades.average(:value).round(2) unless subject.grades.count.zero? %>
           </td>
         </tr>
     <% end %>
     </tbody>
   </table>
 </div>
-
-Oceny:<br>
 
 
