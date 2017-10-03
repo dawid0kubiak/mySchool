@@ -28,7 +28,9 @@
         </td>
         <td>
           <% Grade.all.order(value: :desc).each do |grade| %>
-              <%= link_to grade.short_name, diary_addgrade_path(request.query_parameters.merge({ per_page: 20 })), class: 'btn btn-default' %>
+              <%= link_to grade.short_name,
+                          diary_addgrade_path(subject: {grade_id: grade.id, pupil_id: pupil.id}),
+                          method: :post,class: 'btn btn-success' %>
           <% end %>
         </td>
       </tr>

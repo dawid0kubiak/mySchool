@@ -9,6 +9,7 @@ class DiaryController < ApplicationController
   end
 
   def addgrade
+    subject = params[:subject]
     puts
   end
 

@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
   get 'diary/view'
 
-  get 'diary/addgrade'
+  post 'diary/addgrade'
 
   get 'diary/subjects'
+  get 'diary/index'
 
   resources :teachers
   resources :grades
