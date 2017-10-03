@@ -2,9 +2,9 @@
     <%= menu_group do %>
         <%= menu_item "Start", root_path %>
         <%= menu_divider %>
-        <%= menu_item "Uczniowie", pupils_path %>
 
         <%= drop_down "Ustawienia" do %>
+            <%= menu_item "Uczniowie", pupils_path %>
             <%= menu_item "Nauczyciele", teachers_path %>
             <%= menu_item "Przedmioty", subjects_path %>
             <%= menu_item "Oceny", grades_path %>

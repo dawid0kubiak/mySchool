@@ -19,12 +19,39 @@
           <li class="list-group-item list-group-item-action">
             <%= link_to "#{subject.name} #{subject.lastname}", '/' %>
             <% Grade.all.each do |grade| %>
-            <%= grade.short_name %>
+            <%= link_to grade.short_name, '/', class: 'btn btn-default' %>
             <% end %>
           </li>
       <% end %>
     </ul>
   </div>
+
+  <table data-toggle="table" data-search="true">
+    <thead>
+    <tr>
+      <th data-sortable="true">Imię i nazwisko</th>
+      <th>Uwagi</th>
+      <th>Oceny</th>
+      <th>Oceń</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @subject.pupils.each do |pupil| %>
+        <tr>
+          <td><%= link_to "#{pupil.name} #{pupil.lastname}", pupil_path(pupil) %></td>
+          <td><%= pupil.note %></td>
+          <td>
+            <%= pupil.subjects %>
+          </td>
+          <td>
+            <% Grade.all.each do |grade| %>
+                <%= link_to grade.short_name, '/', class: 'btn btn-default' %>
+            <% end %>
+          </td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
 </div>
 
 

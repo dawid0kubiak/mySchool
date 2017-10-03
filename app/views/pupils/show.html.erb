@@ -20,14 +20,16 @@
     <% @pupil.subjects.each do |subject| %>
         <tr>
           <td><%= subject.name %></td>
-          <td><%= subject.teacher %></td>
+          <td><%= subject.teachers.first.name_displayed %></td>
           <td>
-            <% subject.grades.each do |grade| %>
+            <% sum_array = Array.new %>
+            <% @pupil.grades(subject).each do |grade| %>
                 <%= grade.short_name %>,
+                <% sum_array << grade.value %>
             <% end %>
           </td>
           <td>
-            <%= subject.grades.average(:value).round(2) unless subject.grades.count.zero? %>
+            <%= (sum_array.sum / sum_array.size.to_f).round(2) unless sum_array.size.zero? %>
           </td>
         </tr>
     <% end %>

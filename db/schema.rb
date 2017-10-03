@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170926130205) do
+ActiveRecord::Schema.define(version: 20171003104812) do
 
   create_table "grades", force: :cascade do |t|
     t.string "short_name"
@@ -20,20 +20,18 @@ ActiveRecord::Schema.define(version: 20170926130205) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "grades_pupils", id: false, force: :cascade do |t|
-    t.integer "grade_id", null: false
-    t.integer "pupil_id", null: false
-  end
-
-  create_table "grades_subjects", id: false, force: :cascade do |t|
-    t.integer "grade_id", null: false
-    t.integer "subject_id", null: false
-  end
-
   create_table "pupils", force: :cascade do |t|
     t.string "name"
     t.string "lastname"
     t.text "note"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "pupils_grades", force: :cascade do |t|
+    t.integer "grade_id"
+    t.integer "pupil_id"
+    t.integer "subject_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

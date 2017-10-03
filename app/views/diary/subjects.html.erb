@@ -1,0 +1,24 @@
+<div class="page-header">
+  <h1>Przedmioty</h1>
+</div>
+<table data-toggle="table" data-search="true">
+  <thead>
+  <tr>
+    <th>Nazwa przedmiotu</th>
+    <th>Nauczyciel</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @subjects.each do |subject| %>
+      <tr>
+        <td><%= link_to subject.name, diary_view_path %></td>
+        <td>
+          <% subject.teachers.each do |teacher| %>
+              <%= teacher.name_displayed %>
+          <% end %>
+        </td>
+
+      </tr>
+  <% end %>
+  </tbody>
+</table>

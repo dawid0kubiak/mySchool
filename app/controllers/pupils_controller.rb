@@ -1,5 +1,5 @@
 class PupilsController < ApplicationController
-  before_action :set_pupil, only: [:show, :edit, :update, :destroy, :subjects, :addsubjects]
+  before_action :set_pupil, only: [:show, :edit, :update, :destroy, :subjects, :addsubjects, :addgrade]
 
   # GET /pupils
   # GET /pupils.json
@@ -70,6 +70,10 @@ class PupilsController < ApplicationController
     subjects = params[:subjects]
     @pupil.subjects = Subject.where(id: subjects)
     redirect_to edit_pupil_path(@pupil)
+  end
+
+  def addgrade
+    @pupil.pupils_grades.new(subject: Subject.first, grade: Grade.last).save
   end
 
   private

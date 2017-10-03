@@ -1,0 +1,38 @@
+<div class="page-header">
+  <h1>Uczniowie</h1>
+</div>
+<table data-toggle="table" data-search="true">
+  <thead>
+  <tr>
+    <th data-sortable="true">Imię i nazwisko</th>
+    <th>Uwagi</th>
+    <th>Oceny</th>
+    <th>Średnia</th>
+    <th>Oceń</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @pupils.each do |pupil| %>
+      <tr>
+        <td><%= link_to "#{pupil.name} #{pupil.lastname}", pupil_path(pupil) %></td>
+        <td><%= pupil.note %></td>
+        <td>
+          <% sum_array = Array.new %>
+          <% pupil.grades(1).each do |grade| %>
+              <%= grade.short_name %>,
+              <% sum_array << grade.value %>
+          <% end %>
+        </td>
+        <td>
+          <%= (sum_array.sum / sum_array.size.to_f).round(2) unless sum_array.size.zero? %>
+        </td>
+        <td>
+          <% Grade.all.order(value: :desc).each do |grade| %>
+              <%= link_to grade.short_name, diary_addgrade_path(request.query_parameters.merge({ per_page: 20 })), class: 'btn btn-default' %>
+          <% end %>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+

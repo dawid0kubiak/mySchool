@@ -6,6 +6,7 @@
   <div class="page-header">
     <h1>Przedmioty</h1>
   </div>
+  <%= link_to 'Przedmioty', pupil_subjects_path(@pupil), class: 'btn btn-primary' %>
   <table data-toggle="table" data-search="true">
     <thead>
     <tr>
@@ -17,7 +18,7 @@
     <% @pupil.subjects.each do |subject| %>
         <tr>
           <td><%= subject.name %></td>
-          <td><%= subject.teacher %></td>
+          <td><%= subject.teachers.first.name_displayed %></td>
 
         </tr>
 
@@ -25,5 +26,4 @@
     <% end %>
     </tbody>
   </table>
-  <%= link_to 'Przedmioty', pupil_subjects_path(@pupil), class: 'btn btn-primary' %>
 </div>

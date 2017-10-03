@@ -1,0 +1,20 @@
+<div class="page-header">
+  <h1>Uczniowie</h1>
+</div>
+<table data-toggle="table" data-search="true">
+  <thead>
+  <tr>
+    <th data-sortable="true">Imię i nazwisko</th>
+    <th>Uwagi</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @pupils.each do |pupil| %>
+      <tr>
+        <td><%= link_to "#{pupil.name} #{pupil.lastname}", pupil_path(pupil) %></td>
+        <td><%= pupil.note %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
