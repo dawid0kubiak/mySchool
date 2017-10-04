@@ -1,19 +1,31 @@
 class DiaryController < ApplicationController
   def index
-    @pupils = Pupil.all.order(:lastname, :name)
+    @subjects = Subject.all.order(:name)
   end
 
-
   def view
+    session[:subject_id] = params[:subject_id] unless params[:subject_id].nil?
+    @subject = Subject.find(session[:subject_id])
     @pupils = Pupil.all.order(:lastname, :name)
+    @sum_array = Array.new
   end
 
   def addgrade
-    subject = params[:subject]
-    puts
+    pupil = Pupil.find(subject_params[:pupil_id])
+    subject_id = (subject_params[:subject_id]).to_i
+    grade_id = (subject_params[:grade_id]).to_i
+    pupil.pupils_grades.create(subject_id: subject_id,
+                               grade_id: grade_id)
+    redirect_to diary_view_path
   end
 
   def subjects
-     @subjects = Subject.all
+    @subjects = Subject.all
+  end
+
+  private
+
+  def subject_params
+    params.require(:subject).permit(:grade_id, :pupil_id, :subject_id)
   end
 end

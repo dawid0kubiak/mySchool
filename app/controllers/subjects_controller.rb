@@ -1,5 +1,5 @@
 class SubjectsController < ApplicationController
-  before_action :set_subject, only: [:show, :edit, :update, :destroy]
+  before_action :set_subject, only: %i[show edit update destroy]
   # before_action :set_pupil
 
   # GET /subjects
@@ -10,8 +10,7 @@ class SubjectsController < ApplicationController
 
   # GET /subjects/1
   # GET /subjects/1.json
-  def show
-  end
+  def show; end
 
   # GET /subjects/new
   def new
@@ -19,8 +18,7 @@ class SubjectsController < ApplicationController
   end
 
   # GET /subjects/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /subjects
   # POST /subjects.json
@@ -30,11 +28,11 @@ class SubjectsController < ApplicationController
     respond_to do |format|
       if @subject.save
         @subject.teachers = teacher
-        format.html {redirect_to subjects_path, notice: 'Subject was successfully created.'}
-        format.json {render :show, status: :created, location: @subject}
+        format.html { redirect_to subjects_path, notice: 'Subject was successfully created.' }
+        format.json { render :show, status: :created, location: @subject }
       else
-        format.html {render :new}
-        format.json {render json: @subject.errors, status: :unprocessable_entity}
+        format.html { render :new }
+        format.json { render json: @subject.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -45,11 +43,11 @@ class SubjectsController < ApplicationController
     respond_to do |format|
       if @subject.update(subject_params)
         @subject.teachers = teacher
-        format.html {redirect_to @subject, notice: 'Subject was successfully updated.'}
-        format.json {render :show, status: :ok, location: @subject}
+        format.html { redirect_to @subject, notice: 'Subject was successfully updated.' }
+        format.json { render :show, status: :ok, location: @subject }
       else
-        format.html {render :edit}
-        format.json {render json: @subject.errors, status: :unprocessable_entity}
+        format.html { render :edit }
+        format.json { render json: @subject.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -59,12 +57,13 @@ class SubjectsController < ApplicationController
   def destroy
     @subject.destroy
     respond_to do |format|
-      format.html {redirect_to subjects_url, notice: 'Subject was successfully destroyed.'}
-      format.json {head :no_content}
+      format.html { redirect_to subjects_url, notice: 'Subject was successfully destroyed.' }
+      format.json { head :no_content }
     end
   end
 
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_subject
     @subject = Subject.find(params[:id])

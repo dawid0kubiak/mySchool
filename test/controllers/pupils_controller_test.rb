@@ -5,17 +5,17 @@ class PupilsControllerTest < ActionDispatch::IntegrationTest
     @pupil = pupils(:one)
   end
 
-  test "should get index" do
+  test 'should get index' do
     get pupils_url
     assert_response :success
   end
 
-  test "should get new" do
+  test 'should get new' do
     get new_pupil_url
     assert_response :success
   end
 
-  test "should create pupil" do
+  test 'should create pupil' do
     assert_difference('Pupil.count') do
       post pupils_url, params: { pupil: { lastname: @pupil.lastname, name: @pupil.name, note: @pupil.note } }
     end
@@ -23,22 +23,22 @@ class PupilsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to pupil_url(Pupil.last)
   end
 
-  test "should show pupil" do
+  test 'should show pupil' do
     get pupil_url(@pupil)
     assert_response :success
   end
 
-  test "should get edit" do
+  test 'should get edit' do
     get edit_pupil_url(@pupil)
     assert_response :success
   end
 
-  test "should update pupil" do
+  test 'should update pupil' do
     patch pupil_url(@pupil), params: { pupil: { lastname: @pupil.lastname, name: @pupil.name, note: @pupil.note } }
     assert_redirected_to pupil_url(@pupil)
   end
 
-  test "should destroy pupil" do
+  test 'should destroy pupil' do
     assert_difference('Pupil.count', -1) do
       delete pupil_url(@pupil)
     end

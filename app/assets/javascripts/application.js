@@ -22,3 +22,7 @@
 $(document).on('turbolinks:load', function () {
     $('[data-toggle="table"]').bootstrapTable();
 });
+
+$(document).on("ready page:change", function() {
+    $('.tag-tooltip').tooltip();
+});

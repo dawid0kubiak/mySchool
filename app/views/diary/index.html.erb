@@ -1,18 +1,27 @@
 <div class="page-header">
-  <h1>Uczniowie</h1>
+  <h1>Przedmioty</h1>
 </div>
 <table data-toggle="table" data-search="true">
   <thead>
   <tr>
-    <th data-sortable="true">Imię i nazwisko</th>
-    <th>Uwagi</th>
+    <th>Nazwa przedmiotu</th>
+    <th>Nauczyciel</th>
+    <th>Akcje</th>
   </tr>
   </thead>
   <tbody>
-  <% @pupils.each do |pupil| %>
+  <% @subjects.each do |subject| %>
       <tr>
-        <td><%= link_to "#{pupil.name} #{pupil.lastname}", pupil_path(pupil) %></td>
-        <td><%= pupil.note %></td>
+        <td><%= subject.name %></td>
+        <td>
+          <% subject.teachers.each do |teacher| %>
+              <%= teacher.name_displayed %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to 'Pokaż', diary_view_path({subject_id: subject}), class: 'btn btn-default btn-xs' %>
+
+        </td>
       </tr>
   <% end %>
   </tbody>

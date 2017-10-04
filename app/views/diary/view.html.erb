@@ -1,5 +1,6 @@
 <div class="page-header">
-  <h1>Uczniowie</h1>
+  <h1><%= "#{@subject.name} (prowadzący: #{@subject.teachers.first.name_displayed})" %></h1>
+  <h3>Uczniowie</h3>
 </div>
 <table data-toggle="table" data-search="true">
   <thead>
@@ -17,20 +18,23 @@
         <td><%= link_to "#{pupil.name} #{pupil.lastname}", pupil_path(pupil) %></td>
         <td><%= pupil.note %></td>
         <td>
-          <% sum_array = Array.new %>
-          <% pupil.grades(1).each do |grade| %>
-              <%= grade.short_name %>,
-              <% sum_array << grade.value %>
+          <% pupil.grades(@subject).each do |grade| %>
+              <%= link_to '', class: 'btn btn-info', title: grade.updated_at.strftime('%F %T'),
+                          'data-toggle': 'tooltip', 'data-placement': 'right' do %>
+                  <%= grade.short_name %>
+              <% end %>
+
+              <% @sum_array << grade.value %>
           <% end %>
         </td>
         <td>
-          <%= (sum_array.sum / sum_array.size.to_f).round(2) unless sum_array.size.zero? %>
+          <%= average_array @sum_array %>
         </td>
         <td>
           <% Grade.all.order(value: :desc).each do |grade| %>
               <%= link_to grade.short_name,
-                          diary_addgrade_path(subject: {grade_id: grade.id, pupil_id: pupil.id}),
-                          method: :post,class: 'btn btn-success' %>
+                          diary_addgrade_path(subject: {grade_id: grade.id, pupil_id: pupil.id, subject_id: @subject.id}),
+                          method: :post, class: 'btn btn-primary' %>
           <% end %>
         </td>
       </tr>
@@ -38,3 +42,6 @@
   </tbody>
 </table>
 
+<%= link_to 'my_model', class: 'btn btn-info', title: 'View Agent Data', 'data-toggle': 'tooltip', 'data-placement': 'right' do %>
+    <span class="glyphicon glyphicon-search"></span>
+<% end %>

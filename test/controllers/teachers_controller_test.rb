@@ -5,17 +5,17 @@ class TeachersControllerTest < ActionDispatch::IntegrationTest
     @teacher = teachers(:one)
   end
 
-  test "should get index" do
+  test 'should get index' do
     get teachers_url
     assert_response :success
   end
 
-  test "should get new" do
+  test 'should get new' do
     get new_teacher_url
     assert_response :success
   end
 
-  test "should create teacher" do
+  test 'should create teacher' do
     assert_difference('Teacher.count') do
       post teachers_url, params: { teacher: { email: @teacher.email, lastname: @teacher.lastname, name: @teacher.name, phone: @teacher.phone } }
     end
@@ -23,22 +23,22 @@ class TeachersControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to teacher_url(Teacher.last)
   end
 
-  test "should show teacher" do
+  test 'should show teacher' do
     get teacher_url(@teacher)
     assert_response :success
   end
 
-  test "should get edit" do
+  test 'should get edit' do
     get edit_teacher_url(@teacher)
     assert_response :success
   end
 
-  test "should update teacher" do
+  test 'should update teacher' do
     patch teacher_url(@teacher), params: { teacher: { email: @teacher.email, lastname: @teacher.lastname, name: @teacher.name, phone: @teacher.phone } }
     assert_redirected_to teacher_url(@teacher)
   end
 
-  test "should destroy teacher" do
+  test 'should destroy teacher' do
     assert_difference('Teacher.count', -1) do
       delete teacher_url(@teacher)
     end

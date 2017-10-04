@@ -1,5 +1,5 @@
 class PupilsController < ApplicationController
-  before_action :set_pupil, only: [:show, :edit, :update, :destroy, :subjects, :addsubjects, :addgrade]
+  before_action :set_pupil, only: %i[show edit update destroy subjects addsubjects addgrade]
 
   # GET /pupils
   # GET /pupils.json
@@ -19,8 +19,7 @@ class PupilsController < ApplicationController
   end
 
   # GET /pupils/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /pupils
   # POST /pupils.json
@@ -29,11 +28,11 @@ class PupilsController < ApplicationController
 
     respond_to do |format|
       if @pupil.save
-        format.html {redirect_to @pupil, notice: 'Pupil was successfully created.'}
-        format.json {render :show, status: :created, location: @pupil}
+        format.html { redirect_to @pupil, notice: 'Pupil was successfully created.' }
+        format.json { render :show, status: :created, location: @pupil }
       else
-        format.html {render :new}
-        format.json {render json: @pupil.errors, status: :unprocessable_entity}
+        format.html { render :new }
+        format.json { render json: @pupil.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -43,11 +42,11 @@ class PupilsController < ApplicationController
   def update
     respond_to do |format|
       if @pupil.update(pupil_params)
-        format.html {redirect_to @pupil, notice: 'Pupil was successfully updated.'}
-        format.json {render :show, status: :ok, location: @pupil}
+        format.html { redirect_to @pupil, notice: 'Pupil was successfully updated.' }
+        format.json { render :show, status: :ok, location: @pupil }
       else
-        format.html {render :edit}
-        format.json {render json: @pupil.errors, status: :unprocessable_entity}
+        format.html { render :edit }
+        format.json { render json: @pupil.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -57,8 +56,8 @@ class PupilsController < ApplicationController
   def destroy
     @pupil.destroy
     respond_to do |format|
-      format.html {redirect_to pupils_url, notice: 'Pupil was successfully destroyed.'}
-      format.json {head :no_content}
+      format.html { redirect_to pupils_url, notice: 'Pupil was successfully destroyed.' }
+      format.json { head :no_content }
     end
   end
 
@@ -72,18 +71,15 @@ class PupilsController < ApplicationController
     redirect_to edit_pupil_path(@pupil)
   end
 
-  def addgrade
-    @pupil.pupils_grades.new(subject: Subject.first, grade: Grade.last).save
-  end
-
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_pupil
-    if params[:id].nil?
-      id_pupil = params[:pupil_id]
-    else
-      id_pupil = params[:id]
-    end
+    id_pupil = if params[:id].nil?
+                 params[:pupil_id]
+               else
+                 params[:id]
+               end
     @pupil = Pupil.find(id_pupil)
   end
 
