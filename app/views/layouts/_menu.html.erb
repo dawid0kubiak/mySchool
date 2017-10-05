@@ -9,6 +9,8 @@
             <%= menu_item "Nauczyciele", teachers_path %>
             <%= menu_item "Przedmioty", subjects_path %>
             <%= menu_item "Oceny", grades_path %>
+            <%= menu_item "Ustawienia konta", edit_user_registration_path %>
+            <%= menu_item "Wyloguj", destroy_user_session_path, method: :delete %>
         <% end %>
     <% end %>
 

@@ -27,7 +27,7 @@
     </div>
 
     <div class="field">
-      <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br/>
+      <%= f.label :current_password %> <i>(1we need your current password to confirm your changes)</i><br/>
       <%= f.password_field :current_password, autocomplete: "off" %>
     </div>
 
@@ -36,8 +36,22 @@
     </div>
 <% end %>
 
+
+
+<div class="container">
+  <%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), html: {method: :put}) do |f| %>
+      <%= f.text_field :name, label: 'Imię' %>
+      <%= f.text_field :lastname, label: 'Nazwisko' %>
+      <%= f.text_field :email, label: 'email' %>
+      <%= f.password_field :password, autocomplete: 'off' %>
+      <%= f.password_field :password_confirmation, autocomplete: 'off' %>
+      <%= f.password_field :current_password, autocomplete: 'off' %>
+      <%= f.submit 'Zapisz', class: 'btn btn-primary' %>
+  <% end %>
+
+
 <h3>Cancel my account</h3>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: {confirm: "Are you sure?"}, method: :delete %></p>
+<p><%= button_to "Usuń konto", registration_path(resource_name), data: {confirm: "Jesteś pewien?"}, method: :delete, class: 'btn btn-danger' %></p>
 
-<%= link_to "Back", :back %>
+<%= link_to "Anuluj", :back %>
