@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <%= bootstrap_form_for(@user) do |f| %>
+          <%= f.text_field :name, label: 'Imię' %>
+          <%= f.text_field :lastname, label: 'Nazwisko' %>
+          <%= f.email_field :email, label: 'e-mail' %>
+          <%= f.phone_field :phone, label: 'telefon' %>
+          <%= f.collection_select :role, User::ROLES, :first, :last %>
+          <%= f.submit 'Zapisz', class: 'btn btn-primary' %>
+          <%= link_to 'Anuluj', pupils_path, :class => 'btn btn-default' %>
+      <% end %>
+    </div>
+  </div>
+</div>

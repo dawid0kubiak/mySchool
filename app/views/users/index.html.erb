@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h1>Nauczyciele</h1>
+  <h1>Użytkownicy</h1>
 </div>
 <%# link_to 'Nowy nauczyciel', new_teacher_path, class: 'btn btn-primary' %>
 <table data-toggle="table" data-search="true">
@@ -9,21 +9,22 @@
     <th>Nazwisko</th>
     <th>Email</th>
     <th>Telefon</th>
+    <th>Rola</th>
     <th>Akcje</th>
   </tr>
   </thead>
 
   <tbody>
-  <% @teachers.each do |teacher| %>
+  <% @users.each do |user| %>
       <tr>
-        <td><%= teacher.name %></td>
-        <td><%= teacher.lastname %></td>
-        <td><a href="mailto:<%= teacher.email %>"><%= teacher.email %></a></td>
-        <td><%= teacher.phone %></td>
+        <td><%= user.name %></td>
+        <td><%= user.lastname %></td>
+        <td><a href="mailto:<%= user.email %>"><%= user.email %></a></td>
+        <td><%= user.phone %></td>
+        <td><%= user.role %></td>
         <td>
-          <%= teacher.role %>
           <%# link_to 'Pokaż', teacher, class: 'btn btn-default btn-xs' %>
-          <%# link_to 'Edytuj', edit_teacher_path(teacher), class: 'btn btn-default btn-xs' %>
+          <%= link_to 'Edytuj', edit_user_path(user), class: 'btn btn-default btn-xs' %>
           <%# link_to 'Usuń', teacher, method: :delete, data: {:confirm => 'Jesteś pewien?'},
                       class: 'btn btn-xs btn-danger' %>
         </td>
@@ -31,5 +32,3 @@
   <% end %>
   </tbody>
 </table>
-
-

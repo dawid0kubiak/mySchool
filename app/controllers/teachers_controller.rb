@@ -4,7 +4,7 @@ class TeachersController < ApplicationController
   # GET /teachers
   # GET /teachers.json
   def index
-    @teachers = Teacher.all
+    @teachers = User.where(role: :teacher)
   end
 
   # GET /teachers/1
