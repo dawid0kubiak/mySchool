@@ -21,7 +21,7 @@
         <td><%= user.lastname %></td>
         <td><a href="mailto:<%= user.email %>"><%= user.email %></a></td>
         <td><%= user.phone %></td>
-        <td><%= user.role %></td>
+        <td><%= User::ROLES[user.role.to_sym] %></td>
         <td>
           <%# link_to 'Pokaż', teacher, class: 'btn btn-default btn-xs' %>
           <%= link_to 'Edytuj', edit_user_path(user), class: 'btn btn-default btn-xs' %>
