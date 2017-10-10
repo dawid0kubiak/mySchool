@@ -1,7 +1,7 @@
 <div class="container">
   <%= bootstrap_form_for(@subject) do |f| %>
       <%= f.text_field :name, label: 'Nazwa Przedmiotu' %>
-      <%= f.collection_select :teachers, Teacher.all, :id, :name_displayed %>
+      <%= f.collection_select :user_id, @teachers, :id, :name_displayed, label: 'Nauczyciel' %>
       <%= f.submit 'Zapisz', class: 'btn btn-primary' %>
       <%= link_to 'Anuluj', pupils_path, class: 'btn btn-default' %>
   <% end %>

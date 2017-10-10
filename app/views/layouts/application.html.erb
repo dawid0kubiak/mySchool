@@ -9,10 +9,13 @@
 
 <body>
 <%= render 'layouts/menu' %>
+
 <div class="container-fluid">
-  <%= yield %>
+<%= render 'layouts/messages' %>
+
+ <%= yield %>
 </div>
-<%# console %>
+<%= console %>
 <script>
 
 </script>

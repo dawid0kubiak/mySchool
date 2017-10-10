@@ -13,14 +13,9 @@
   <% @subjects.each do |subject| %>
       <tr>
         <td><%= subject.name %></td>
-        <td>
-          <% subject.teachers.each do |teacher| %>
-              <%= teacher.name_displayed %>
-          <% end %>
-        </td>
+        <td><%= subject.user.name_displayed %></td>
         <td>
           <%= link_to 'Pokaż', diary_view_path({subject_id: subject}), class: 'btn btn-default btn-xs' %>
-
         </td>
       </tr>
   <% end %>

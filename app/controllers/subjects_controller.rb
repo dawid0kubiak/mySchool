@@ -1,5 +1,6 @@
 class SubjectsController < ApplicationController
   before_action :set_subject, only: %i[show edit update destroy]
+  before_action :set_teachers, only: %i[edit update new create]
   # before_action :set_pupil
 
   # GET /subjects
@@ -27,7 +28,6 @@ class SubjectsController < ApplicationController
 
     respond_to do |format|
       if @subject.save
-        @subject.teachers = teacher
         format.html { redirect_to subjects_path, notice: 'Subject was successfully created.' }
         format.json { render :show, status: :created, location: @subject }
       else
@@ -42,7 +42,6 @@ class SubjectsController < ApplicationController
   def update
     respond_to do |format|
       if @subject.update(subject_params)
-        @subject.teachers = teacher
         format.html { redirect_to @subject, notice: 'Subject was successfully updated.' }
         format.json { render :show, status: :ok, location: @subject }
       else
@@ -73,12 +72,13 @@ class SubjectsController < ApplicationController
     @pupil = Pupil.find(params[:pupil_id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
-  def subject_params
-    params.require(:subject).permit(:name)
+  def set_teachers
+    @teachers = User.where(role: :teacher)
   end
 
-  def teacher
-    Teacher.where(id: params[:subject][:teachers])
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def subject_params
+    params.require(:subject).permit(:name, :user_id)
   end
+
 end

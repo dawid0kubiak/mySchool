@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171005123829) do
+ActiveRecord::Schema.define(version: 20171010111218) do
 
   create_table "grades", force: :cascade do |t|
     t.string "short_name"
@@ -18,6 +18,14 @@ ActiveRecord::Schema.define(version: 20171005123829) do
     t.integer "value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.string "title"
+    t.text "body"
+    t.integer "sender_id"
+    t.integer "recipient_id"
+    t.integer "message_id"
   end
 
   create_table "pupils", force: :cascade do |t|
@@ -44,20 +52,7 @@ ActiveRecord::Schema.define(version: 20171005123829) do
   create_table "subjects", force: :cascade do |t|
     t.string "name"
     t.string "teacher"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "subjects_teachers", id: false, force: :cascade do |t|
-    t.integer "teacher_id", null: false
-    t.integer "subject_id", null: false
-  end
-
-  create_table "teachers", force: :cascade do |t|
-    t.string "name"
-    t.string "lastname"
-    t.string "email"
-    t.string "phone"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -77,7 +72,7 @@ ActiveRecord::Schema.define(version: 20171005123829) do
     t.datetime "updated_at", null: false
     t.string "name"
     t.string "lastname"
-    t.string "role", default: "parent"
+    t.string "role", default: "new"
     t.string "phone"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

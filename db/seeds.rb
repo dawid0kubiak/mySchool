@@ -5,14 +5,13 @@ Grade.create(short_name: '3', value: 3)
 Grade.create(short_name: '2', value: 2)
 Grade.create(short_name: '1', value: 1)
 
-t1 = Teacher.create(name: 'Jan', lastname: 'Kowalski',
-                    email: 'jan.kowalski@serwer.pl', phone: '123789654')
-t2 = Teacher.create(name: 'Tadeusz', lastname: 'Zapolski',
-                    email: 'tadeusz.zapolskki@serwer.pl', phone: '123123123')
+u1 = User.create(email: 'p.tutka@i-bp.pl', password: 'zaq12wsx', password_confirmation: 'zaq12wsx', role: :teacher, name: 'Paweł', lastname: 'Tutka')
+User.create(email: 'd.kubiak@i-bs.pl', password: 'zaq12wsx', password_confirmation: 'zaq12wsx', role: :admin)
 
-Subject.create(name: 'j.polski').teachers << t1
-Subject.create(name: 'matematyka').teachers << t2
-Subject.create(name: 'historia').teachers << t1
+
+Subject.create(name: 'j.polski')
+Subject.create(name: 'matematyka')
+Subject.create(name: 'historia')
 
 Pupil.create(name: 'Marta', lastname: 'Kubiak').subjects = Subject.all
 Pupil.create(name: 'Wojciech', lastname: 'Kubiak').subjects = Subject.all
