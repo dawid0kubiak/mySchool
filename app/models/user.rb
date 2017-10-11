@@ -14,4 +14,7 @@ class User < ApplicationRecord
   def name_displayed
     "#{name} #{lastname}"
   end
+  def has_role?(role)
+    self.role == role.to_s
+  end
 end

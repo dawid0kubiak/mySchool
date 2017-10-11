@@ -1,6 +1,7 @@
 class DiaryController < ApplicationController
   def index
     @subjects = Subject.all.order(:name)
+    authorize @subjects
   end
 
   def view

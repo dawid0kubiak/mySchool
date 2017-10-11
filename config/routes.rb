@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get 'diary/subjects'
   get 'diary/index'
 
-  resources :teachers
+  resources :teachers, only: :index
   resources :grades
   resources :subjects
   resources :pupils do

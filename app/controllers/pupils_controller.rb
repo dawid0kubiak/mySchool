@@ -5,6 +5,7 @@ class PupilsController < ApplicationController
   # GET /pupils.json
   def index
     @pupils = Pupil.all.order(:lastname, :name)
+    authorize @pupils
   end
 
   # GET /pupils/1
@@ -16,6 +17,7 @@ class PupilsController < ApplicationController
   # GET /pupils/new
   def new
     @pupil = Pupil.new
+    authorize @pupil
   end
 
   # GET /pupils/1/edit
@@ -25,6 +27,7 @@ class PupilsController < ApplicationController
   # POST /pupils.json
   def create
     @pupil = Pupil.new(pupil_params)
+    authorize @pupil
 
     respond_to do |format|
       if @pupil.save
@@ -75,12 +78,9 @@ class PupilsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_pupil
-    id_pupil = if params[:id].nil?
-                 params[:pupil_id]
-               else
-                 params[:id]
-               end
+    id_pupil = params[:id].nil? ? params[:pupil_id] : params[:id]
     @pupil = Pupil.find(id_pupil)
+    authorize @pupil
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

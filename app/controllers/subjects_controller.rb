@@ -7,6 +7,7 @@ class SubjectsController < ApplicationController
   # GET /subjects.json
   def index
     @subjects = Subject.all
+    authorize @subjects
   end
 
   # GET /subjects/1
@@ -16,6 +17,7 @@ class SubjectsController < ApplicationController
   # GET /subjects/new
   def new
     @subject = Subject.new
+    authorize @subject
   end
 
   # GET /subjects/1/edit
@@ -25,6 +27,7 @@ class SubjectsController < ApplicationController
   # POST /subjects.json
   def create
     @subject = Subject.new(subject_params)
+    authorize @subject
 
     respond_to do |format|
       if @subject.save
@@ -66,14 +69,14 @@ class SubjectsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_subject
     @subject = Subject.find(params[:id])
+    authorize @subject
   end
 
-  def set_pupil
-    @pupil = Pupil.find(params[:pupil_id])
-  end
+
 
   def set_teachers
     @teachers = User.where(role: :teacher)
+    # authorize @teachers
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

@@ -5,6 +5,7 @@ class TeachersController < ApplicationController
   # GET /teachers.json
   def index
     @teachers = User.where(role: :teacher)
+    authorize @teachers
   end
 
   # GET /teachers/1
