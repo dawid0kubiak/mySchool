@@ -15,6 +15,8 @@ class User < ApplicationRecord
     "#{name} #{lastname}"
   end
   def has_role?(role)
-    self.role == role.to_s
+    role = Array(role) if role.class != Array
+    role.map!(&:to_sym)
+    role.include?(self.role.to_sym)
   end
 end

@@ -17,7 +17,7 @@ class GradesControllerTest < ActionDispatch::IntegrationTest
 
   test 'should create grade' do
     assert_difference('Grade.count') do
-      post grades_url, params: { grade: { long_name: @grade.long_name, short_name: @grade.short_name, value: @grade.value } }
+      post grades_url, params: { grade: { long_name: 'dobry', short_name: '4', value: 4 } }
     end
 
     assert_redirected_to grade_url(Grade.last)

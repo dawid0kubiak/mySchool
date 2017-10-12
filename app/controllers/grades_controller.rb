@@ -4,7 +4,8 @@ class GradesController < ApplicationController
   # GET /grades
   # GET /grades.json
   def index
-    @grades = Grade.all
+    @grades = Grade.all.order(value: :desc)
+    authorize @grades
   end
 
   # GET /grades/1
@@ -14,6 +15,7 @@ class GradesController < ApplicationController
   # GET /grades/new
   def new
     @grade = Grade.new
+    authorize @grade
   end
 
   # GET /grades/1/edit
@@ -23,7 +25,7 @@ class GradesController < ApplicationController
   # POST /grades.json
   def create
     @grade = Grade.new(grade_params)
-
+    authorize @grade
     respond_to do |format|
       if @grade.save
         format.html { redirect_to grades_url, notice: 'Grade was successfully created.' }
@@ -64,6 +66,7 @@ class GradesController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_grade
     @grade = Grade.find(params[:id])
+    authorize @grade
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

@@ -66,11 +66,13 @@ class PupilsController < ApplicationController
 
   def subjects
     @subjects = Subject.all
+    authorize @subjects
   end
 
   def addsubjects
     subjects = params[:subjects]
     @pupil.subjects = Subject.where(id: subjects)
+    authorize @pupil
     redirect_to edit_pupil_path(@pupil)
   end
 

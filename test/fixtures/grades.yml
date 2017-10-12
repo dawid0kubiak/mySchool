@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  short_name: MyString
-  long_name: MyString
-  value: MyString
+  short_name: '1'
+  long_name: 'niedostateczny'
+  value: 1
 
 two:
-  short_name: MyString
-  long_name: MyString
-  value: MyString
+  short_name: '5'
+  long_name: 'bardzo dobry'
+  value: 5

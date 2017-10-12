@@ -15,7 +15,7 @@
       <% @subjects.each do |subject| %>
           <tr>
             <td><%= subject.name %></td>
-            <td><%= subject.teacher %></td>
+            <td><%= subject.user.name_displayed %></td>
             <td>
 
               <%= check_box_tag 'subjects[]', subject.id,

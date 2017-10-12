@@ -1,14 +1,16 @@
-class PupilPolicy < ApplicationPolicy
+class GradePolicy < ApplicationPolicy
+
   def index?
     user.has_role? [:admin, :teacher]
   end
+
 
   def show?
     index?
   end
 
   def create?
-    new?
+    index?
   end
 
   def new?
@@ -27,17 +29,6 @@ class PupilPolicy < ApplicationPolicy
     index?
   end
 
-  def subjects?
-    index?
-  end
-
-  def addsubjects?
-    index?
-  end
-
-  def addgrade?
-    index?
-  end
   class Scope < Scope
     def resolve
       scope

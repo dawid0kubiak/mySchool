@@ -7,7 +7,7 @@ class DiaryControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should get addgrade' do
-    get diary_addgrade_url
+    post diary_addgrade_url
     assert_response :success
   end
 

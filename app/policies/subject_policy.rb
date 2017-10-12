@@ -1,7 +1,7 @@
 class SubjectPolicy < ApplicationPolicy
 
   def index?
-    user.role.to_sym == :admin
+    user.has_role? [:admin, :teacher]
   end
 
 
@@ -26,6 +26,14 @@ class SubjectPolicy < ApplicationPolicy
   end
 
   def destroy?
+    index?
+  end
+
+  def subjects?
+    index?
+  end
+
+  def view?
     index?
   end
 
