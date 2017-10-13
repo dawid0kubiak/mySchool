@@ -3,6 +3,7 @@ require 'test_helper'
 class SubjectsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @subject = subjects(:one)
+    @user = users(:one)
   end
 
   test 'should get index' do
@@ -17,10 +18,10 @@ class SubjectsControllerTest < ActionDispatch::IntegrationTest
 
   test 'should create subject' do
     assert_difference('Subject.count') do
-      post subjects_url, params: { subject: { name: @subject.name } }
+      post subjects_url, params: { subject: { name: @subject.name, user_id: @user.id } }
     end
 
-    assert_redirected_to subject_url(Subject.last)
+    assert_redirected_to subjects_url
   end
 
   test 'should show subject' do

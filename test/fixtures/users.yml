@@ -10,7 +10,9 @@ one:
   name: Dawid
   lastname: Nowak
   role: teacher
-  encrypted_password: <%= User.new.send(:password_digest, '123greetings') %>
+  encrypted_password: <%= User.new.send(:password_digest, 'zaq12wsx') %>
 two:
+  id: 2
   email: test2@example.org
-  encrypted_password: <%= User.new.send(:password_digest, '123greetings') %>
+  encrypted_password: <%= User.new.send(:password_digest, 'zaq12wsx') %>
+  role: admin

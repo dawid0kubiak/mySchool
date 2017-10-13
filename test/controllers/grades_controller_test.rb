@@ -20,7 +20,7 @@ class GradesControllerTest < ActionDispatch::IntegrationTest
       post grades_url, params: { grade: { long_name: 'dobry', short_name: '4', value: 4 } }
     end
 
-    assert_redirected_to grade_url(Grade.last)
+    assert_redirected_to grades_url
   end
 
   test 'should show grade' do
@@ -35,7 +35,7 @@ class GradesControllerTest < ActionDispatch::IntegrationTest
 
   test 'should update grade' do
     patch grade_url(@grade), params: { grade: { long_name: @grade.long_name, short_name: @grade.short_name, value: @grade.value } }
-    assert_redirected_to grade_url(@grade)
+    assert_redirected_to grades_url
   end
 
   test 'should destroy grade' do
