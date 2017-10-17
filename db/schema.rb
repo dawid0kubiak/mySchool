@@ -13,9 +13,9 @@
 ActiveRecord::Schema.define(version: 20171010111218) do
 
   create_table "grades", force: :cascade do |t|
-    t.string "short_name"
+    t.string "short_name", null: false
     t.string "long_name"
-    t.integer "value"
+    t.float "value", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

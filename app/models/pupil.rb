@@ -5,12 +5,12 @@ class Pupil < ApplicationRecord
   validates :lastname, presence: true
 
 
-  def grades(subject)
+  def pupil_grades(subject)
     # pupils_grades.where(subject_id: subject).map(&:grade)
-    pupils_grades.where(subject_id: subject).map do |grade|
-      grade.grade.created_at = grade.created_at
-      grade.grade.updated_at = grade.updated_at
-      grade.grade
+    pupils_grades.where(subject_id: subject).map do |pupil_grades|
+      pupil_grades.grade.created_at = pupil_grades.created_at
+      pupil_grades.grade.updated_at = pupil_grades.updated_at
+      pupil_grades
     end
   end
 end

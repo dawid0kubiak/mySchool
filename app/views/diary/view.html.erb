@@ -18,13 +18,14 @@
         <td><%= link_to "#{pupil.name} #{pupil.lastname}", pupil_path(pupil) %></td>
         <td><%= pupil.note %></td>
         <td>
-          <% pupil.grades(@subject).each do |grade| %>
-              <%= link_to '', class: 'btn btn-info', title: grade.updated_at.strftime('%F %T'),
+          <% pupil.pupil_grades(@subject).each do |pupil_grade| %>
+              <%= link_to '', class: 'btn btn-info', title: (l pupil_grade.updated_at),
                           'data-toggle': 'tooltip', 'data-placement': 'right' do %>
-                  <%= grade.short_name %>
+                  <%= pupil_grade.grade.short_name %>
+                  <%= pupil_grade.id %>
               <% end %>
 
-              <% @sum_array << grade.value %>
+              <% @sum_array << pupil_grade.grade.value %>
           <% end %>
         </td>
         <td>

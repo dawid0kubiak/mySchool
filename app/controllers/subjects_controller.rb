@@ -27,7 +27,7 @@ class SubjectsController < ApplicationController
   # POST /subjects.json
   def create
     @subject = Subject.new(subject_params)
-    authorize @subject
+find    authorize @subject
 
     respond_to do |format|
       if @subject.save

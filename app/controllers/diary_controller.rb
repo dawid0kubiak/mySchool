@@ -12,13 +12,20 @@ class DiaryController < ApplicationController
     @sum_array = Array.new
   end
 
+
+  def listgrades
+    get_pupil
+  end
+
   def addgrade
-    pupil = Pupil.find(subject_params[:pupil_id])
-    authorize pupil
-    subject_id = (subject_params[:subject_id]).to_i
-    grade_id = (subject_params[:grade_id]).to_i
-    pupil.pupils_grades.create(subject_id: subject_id,
-                               grade_id: grade_id)
+    get_pupil.pupils_grades.create(subject_id: subject_params[:subject_id],
+                                   grade_id: subject_params[:grade_id])
+    redirect_to diary_view_path
+  end
+
+  def delgrade
+
+    get_pupil.pupils_grades.find(5).destroy
     redirect_to diary_view_path
   end
 
@@ -31,5 +38,11 @@ class DiaryController < ApplicationController
 
   def subject_params
     params.require(:subject).permit(:grade_id, :pupil_id, :subject_id)
+  end
+
+  def get_pupil
+    pupil = Pupil.find(subject_params[:pupil_id])
+    authorize pupil
+    pupil
   end
 end

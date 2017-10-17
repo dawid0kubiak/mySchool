@@ -1,9 +1,9 @@
 class CreateGrades < ActiveRecord::Migration[5.1]
   def change
     create_table :grades do |t|
-      t.string :short_name
+      t.string :short_name, unique: true, null: false
       t.string :long_name
-      t.integer :value
+      t.float :value, null: false
 
       t.timestamps
     end

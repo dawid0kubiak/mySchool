@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   resources :grades
   resources :subjects
   resources :pupils do
+    resources :subjects do
+      resources :pupil_grades
+    end
     get :subjects
     post :addsubjects
   end

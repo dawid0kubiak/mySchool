@@ -23,9 +23,9 @@
           <td><%= subject.user.name_displayed %></td>
           <td>
             <% sum_array = Array.new %>
-            <% @pupil.grades(subject).each do |grade| %>
-                <%= grade.short_name %>,
-                <% sum_array << grade.value %>
+            <% @pupil.pupil_grades(subject).each do |pupil_grade| %>
+                <%= pupil_grade.grade.short_name %>,
+                <% sum_array << pupil_grade.grade.value %>
             <% end %>
           </td>
           <td>
