@@ -10,6 +10,7 @@
     <th>Oceny</th>
     <th>Średnia</th>
     <th>Oceń</th>
+    <th></th>
   </tr>
   </thead>
   <tbody>
@@ -22,7 +23,6 @@
               <%= link_to '', class: 'btn btn-info', title: (l pupil_grade.updated_at),
                           'data-toggle': 'tooltip', 'data-placement': 'right' do %>
                   <%= pupil_grade.grade.short_name %>
-                  <%= pupil_grade.id %>
               <% end %>
 
               <% @sum_array << pupil_grade.grade.value %>
@@ -37,6 +37,9 @@
                           diary_addgrade_path(subject: {grade_id: grade.id, pupil_id: pupil.id, subject_id: @subject.id}),
                           method: :post, class: 'btn btn-primary' %>
           <% end %>
+        </td>
+        <td>
+          <%= link_to 'Edycja ocen', pupil_subject_pupils_grade_index_path(pupil, @subject) %>
         </td>
       </tr>
   <% end %>

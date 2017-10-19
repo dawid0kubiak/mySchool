@@ -1,8 +1,8 @@
 require 'test_helper'
 
-class PupilGradesControllerTest < ActionDispatch::IntegrationTest
+class PupilsGradeControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @pupil_grade = pupil_grades(:one)
+    @pupil_grade = pupils_grade(:one)
   end
 
   test "should get index" do

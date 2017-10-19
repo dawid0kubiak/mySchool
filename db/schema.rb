@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171010111218) do
+ActiveRecord::Schema.define(version: 20171018135013) do
+
+  create_table "comments", force: :cascade do |t|
+    t.text "body"
+    t.integer "message_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["message_id"], name: "index_comments_on_message_id"
+  end
 
   create_table "grades", force: :cascade do |t|
     t.string "short_name", null: false
@@ -23,9 +31,9 @@ ActiveRecord::Schema.define(version: 20171010111218) do
   create_table "messages", force: :cascade do |t|
     t.string "title"
     t.text "body"
-    t.integer "sender_id"
-    t.integer "recipient_id"
-    t.integer "message_id"
+    t.boolean "readed"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "pupils", force: :cascade do |t|

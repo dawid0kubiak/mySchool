@@ -11,13 +11,14 @@ Rails.application.routes.draw do
   resources :subjects
   resources :pupils do
     resources :subjects do
-      resources :pupil_grades
+      resources :pupils_grade, only: [:index, :destroy]
     end
     get :subjects
     post :addsubjects
   end
   devise_for :users
   resources :users
+  resources :messages
   root 'pupils#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

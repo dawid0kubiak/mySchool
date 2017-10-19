@@ -1,0 +1,26 @@
+<div class="page-header">
+  <h1>Oceny ucznia <%= "#{@pupil.name} #{@pupil.lastname}" %> (<%= @subject.name %>)</h1>
+</div>
+
+<%= link_to 'Porót do lekcji', diary_view_path({subject_id: @subject}), class: 'btn btn-success' %>
+<table data-toggle="table" data-search="true">
+  <thead>
+  <tr>
+    <th>Ocena</th>
+    <th>Data wystawienia</th>
+    <th>Usuwanie</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @pupil_grades.each do |pupil_grade| %>
+      <tr>
+        <td><%= pupil_grade.grade.short_name %></td>
+        <td><%= l pupil_grade.created_at, format: :short %></td>
+        <td><%= link_to 'Usuń ', [@pupil, @subject, pupil_grade], method: :delete,
+                        data: {confirm: 'Are you sure?'}, class: 'btn btn-danger btn-xs' %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
