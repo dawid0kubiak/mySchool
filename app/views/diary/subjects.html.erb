@@ -12,7 +12,7 @@
   <% @subjects.each do |subject| %>
       <tr>
         <td><%= link_to subject.name, diary_view_path %></td>
-        <td><%= subject.user.name_displayed %></td>
+        <td><%= subject.user.name %></td>
 
       </tr>
   <% end %>

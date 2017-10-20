@@ -1,10 +1,12 @@
 class MessagesController < ApplicationController
   before_action :set_message, only: [:show, :edit, :update, :destroy]
+   # before_action :set_recipient, only: [:index, :new, :create]
 
   # GET /messages
   # GET /messages.json
   def index
-    @messages = Message.all
+    @message = Message.new
+    @messages = current_user.messages
     authorize @messages
   end
 
@@ -26,7 +28,7 @@ class MessagesController < ApplicationController
   # POST /messages
   # POST /messages.json
   def create
-    @message = Message.new(message_params)
+    @message = current_user.sent_messages.new(message_params)
     authorize @message
 
     respond_to do |format|
@@ -73,6 +75,10 @@ class MessagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def message_params
-      params.require(:message).permit(:title, :body)
+      params.require(:message).permit(:title, :body, :recipient_id)
     end
+
+  def set_recipient
+    @recipient = User.find params[:user_id]
+  end
 end

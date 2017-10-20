@@ -31,7 +31,10 @@ ActiveRecord::Schema.define(version: 20171018135013) do
   create_table "messages", force: :cascade do |t|
     t.string "title"
     t.text "body"
-    t.boolean "readed"
+    t.boolean "unread", default: true
+    t.boolean "deleted"
+    t.integer "sender_id"
+    t.integer "recipient_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -77,7 +80,7 @@ ActiveRecord::Schema.define(version: 20171018135013) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "name"
+    t.string "firstname"
     t.string "lastname"
     t.string "role", default: "new"
     t.string "phone"

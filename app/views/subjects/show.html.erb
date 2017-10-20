@@ -6,7 +6,7 @@
   <dt><strong>Nazwa:</strong></dt>
   <dd><%= @subject.name %></dd>
   <dt><strong>Nauczyciel:</strong></dt>
-  <dd><%= @subject.user.name_displayed %></dd>
+  <dd><%= @subject.user.name %></dd>
 </dl>
 
 <%= link_to 'Lista', subjects_path, class: 'btn btn-default' %>
