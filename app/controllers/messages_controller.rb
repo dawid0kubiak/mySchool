@@ -6,7 +6,17 @@ class MessagesController < ApplicationController
   # GET /messages.json
   def index
     @message = Message.new
-    @messages = current_user.messages
+    @messages = current_user.messages.where(deleted: false)
+    @type = :inbox
+    @countmessages = current_user.messages.where(unread: true).count
+    case params[:type]
+      when 'sent'
+        @type = :sent
+        @messages = current_user.sent_messages
+      when 'trash'
+        @type = :trash
+        @messages = current_user.messages.where(deleted: true)
+    end
     authorize @messages
   end
 

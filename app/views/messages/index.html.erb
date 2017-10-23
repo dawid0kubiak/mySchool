@@ -20,7 +20,7 @@
               </div>
               <div class="modal-body">
                 <%= bootstrap_form_for @message do |f| %>
-                    <%= f.collection_select :recipient_id, User.all, :id, :name , label: 'Odbiorca' %>
+                    <%= f.collection_select :recipient_id, User.all, :id, :name, label: 'Odbiorca' %>
                     <%= f.text_field :title, label: 'Tytuł' %>
                     <%= f.text_area :body, Label: 'Treść', rows: 10 %>
                     <%= f.submit 'Wyślij' %>
@@ -33,13 +33,15 @@
 
       <ul class="inbox-nav inbox-divider">
         <li class="active">
-          <a href="#"><i class="fa fa-inbox"></i> Odebrane <span class="label label-danger pull-right"><%= @messages.where(unread: true).count %></span></a>
+          <%= link_to "<i class='fa fa-inbox'></i> Odebrane
+          <span class='label label-danger pull-right'>#{ @countmessages }</span>".html_safe,
+              messages_path(type: :inbox)%>
         </li>
-        <li>
-          <a href="#"><i class="fa fa-envelope-o"></i> Wysłane</a>
+        <li class="">
+          <%= link_to "<i class='fa fa-envelope-o'></i> Wysłane".html_safe, messages_path(type: :sent) %>
         </li>
-        <li>
-          <a href="#"><i class=" fa fa-trash-o"></i> Kosz</a>
+        <li class="">
+          <%= link_to "<i class='fa fa-trash-o'></i> Kosz".html_safe, messages_path(type: :trash) %>
         </li>
       </ul>
 
@@ -127,12 +129,12 @@
         <table class="table table-inbox table-hover">
           <tbody>
           <% @messages.each do |message| %>
-              <tr class="<%= 'unread' if message.unread %>">
+              <tr class="<%= 'unread' if message.unread && @type == :inbox %>">
                 <td class="inbox-small-cells">
                   <input type="checkbox" class="mail-checkbox">
                 </td>
                 <td class="inbox-small-cells"><i class="fa fa-star"></i></td>
-                <td class="view-message  dont-show"><%= "#{message.sender.name} (#{message.sender.email})" %></td>
+                <td class="view-message  dont-show"><%= @type == :sent ? "#{message.recipient.name} (#{message.recipient.email})" : "#{message.sender.name} (#{message.sender.email})" %></td>
                 <td class="view-message "><%= message.title %></td>
                 <td class="view-message  text-right"><%= l message.created_at, format: :short %></td>
               </tr>

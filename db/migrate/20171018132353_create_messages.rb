@@ -4,7 +4,7 @@ class CreateMessages < ActiveRecord::Migration[5.1]
       t.string :title
       t.text :body
       t.boolean :unread, default: true
-      t.boolean :deleted
+      t.boolean :deleted, default: false
       t.integer :sender_id
       t.integer :recipient_id
 

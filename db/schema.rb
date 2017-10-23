@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20171018135013) do
     t.string "title"
     t.text "body"
     t.boolean "unread", default: true
-    t.boolean "deleted"
+    t.boolean "deleted", default: false
     t.integer "sender_id"
     t.integer "recipient_id"
     t.datetime "created_at", null: false
