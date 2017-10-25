@@ -16,3 +16,27 @@
  *= require_tree .
  *= require_self
  */
+
+.page-header {
+    background-color: #003b0b;
+    color: #fff;
+    padding-top: 1px;
+    padding-left: 25px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+}
+
+a, a:hover {
+    color: #003b0b;
+}
+
+.btn-primary {
+    background-color: #006816;
+}
+.btn-primary:hover {
+    background-color: #003b0b;
+}
+
+.btn-info, .btn-info:hover {
+    background-color: #00ac22;
+}

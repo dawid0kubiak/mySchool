@@ -1,148 +1,116 @@
-<div class="container">
-  <div class="mail-box">
-    <aside class="sm-side">
-      <div class="user-head">
-        <div class="user-name">
-          <h5><%= current_user.name %></h5>
-          <span><%= current_user.email %></span>
-        </div>
-
-      </div>
-      <div class="inbox-body">
-        <a href="#myModal" data-toggle="modal" title="Nowa" class="btn btn-compose">Nowa</a>
-        <!-- Modal -->
-        <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade" style="display: none;">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
-                <h4 class="modal-title">Nowa wiadomość</h4>
-              </div>
-              <div class="modal-body">
-                <%= bootstrap_form_for @message do |f| %>
-                    <%= f.collection_select :recipient_id, User.all, :id, :name, label: 'Odbiorca' %>
-                    <%= f.text_field :title, label: 'Tytuł' %>
-                    <%= f.text_area :body, Label: 'Treść', rows: 10 %>
-                    <%= f.submit 'Wyślij' %>
-                <% end %>
-              </div>
-            </div><!-- /.modal-content -->
-          </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
+<div class="mail-box">
+  <aside class="sm-side">
+    <div class="user-head">
+      <div class="user-name">
+        <h5><%= current_user.name %></h5>
+        <span><%= current_user.email %></span>
       </div>
 
-      <ul class="inbox-nav inbox-divider">
-        <li class="active">
-          <%= link_to "<i class='fa fa-inbox'></i> Odebrane
-          <span class='label label-danger pull-right'>#{ @countmessages }</span>".html_safe,
-              messages_path(type: :inbox)%>
-        </li>
-        <li class="">
-          <%= link_to "<i class='fa fa-envelope-o'></i> Wysłane".html_safe, messages_path(type: :sent) %>
-        </li>
-        <li class="">
-          <%= link_to "<i class='fa fa-trash-o'></i> Kosz".html_safe, messages_path(type: :trash) %>
-        </li>
-      </ul>
-
-      <ul class="nav nav-pills nav-stacked labels-info ">
-        <li><h4>Buddy online</h4></li>
-        <li><a href="#"> <i class=" fa fa-circle text-success"></i>Alireza Zare <p>I do not think</p></a></li>
-        <li><a href="#"> <i class=" fa fa-circle text-danger"></i>Dark Coders<p>Busy with coding</p></a></li>
-        <li><a href="#"> <i class=" fa fa-circle text-muted "></i>Mentaalist <p>I out of control</p></a>
-        </li>
-      </ul>
-    </aside>
-    <aside class="lg-side">
-      <div class="inbox-head">
-        <h3>Skrzynka odbiorcza</h3>
-        <form action="#" class="pull-right position">
-          <div class="input-append">
-            <input type="text" class="sr-input" placeholder="Search Mail">
-            <button class="btn sr-btn" type="button"><i class="fa fa-search"></i></button>
-          </div>
-        </form>
-      </div>
-      <div class="inbox-body">
-        <div class="mail-option">
-          <div class="chk-all">
-            <input type="checkbox" class="mail-checkbox mail-group-checkbox">
-            <div class="btn-group">
-              <a data-toggle="dropdown" href="#" class="btn mini all" aria-expanded="false">
-                All
-                <i class="fa fa-angle-down "></i>
-              </a>
-              <ul class="dropdown-menu">
-                <li><a href="#"> None</a></li>
-                <li><a href="#"> Read</a></li>
-                <li><a href="#"> Unread</a></li>
-              </ul>
+    </div>
+    <div class="inbox-body">
+      <a href="#myModal" data-toggle="modal" title="Nowa" class="btn btn-compose">Nowa</a>
+      <!-- Modal -->
+      <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade" style="display: none;">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+              <h4 class="modal-title">Nowa wiadomość</h4>
             </div>
-          </div>
+            <div class="modal-body">
+              <%= bootstrap_form_for @message do |f| %>
+                  <%= f.collection_select :recipient_id, User.all, :id, :name, label: 'Odbiorca' %>
+                  <%= f.text_field :title, label: 'Tytuł' %>
+                  <%= f.text_area :body, Label: 'Treść', rows: 10 %>
+                  <%= f.submit 'Wyślij' %>
+              <% end %>
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
+    </div>
 
-          <div class="btn-group">
-            <a data-original-title="Refresh" data-placement="top" data-toggle="dropdown" href="#" class="btn mini tooltips">
-              <i class=" fa fa-refresh"></i>
-            </a>
-          </div>
-          <div class="btn-group">
-            <a data-original-title="Refresh" data-placement="top" data-toggle="dropdown" href="#" class="btn mini tooltips">
-              <i class="fa fa-trash-o"></i> Delete</a>
-          </div>
+    <ul class="inbox-nav inbox-divider">
+      <li class="active">
+        <%= link_to "<i class='fa fa-inbox'></i> Odebrane
+          <span class='label label-danger pull-right'>#{ @countmessages }</span>".html_safe,
+                    messages_path(type: :inbox) %>
+      </li>
+      <li class="">
+        <%= link_to "<i class='fa fa-envelope-o'></i> Wysłane".html_safe, messages_path(type: :sent) %>
+      </li>
+      <li class="">
+        <%= link_to "<i class='fa fa-trash-o'></i> Kosz".html_safe, messages_path(type: :trash) %>
+      </li>
+    </ul>
 
-          <div class="btn-group hidden-phone">
-            <a data-toggle="dropdown" href="#" class="btn mini blue" aria-expanded="false">
-              More
+    <!--<ul class="nav nav-pills nav-stacked labels-info ">-->
+      <!--<li><h4>Buddy online</h4></li>-->
+      <!--<li><a href="#"> <i class=" fa fa-circle text-success"></i>Alireza Zare <p>I do not think</p></a></li>-->
+      <!--<li><a href="#"> <i class=" fa fa-circle text-danger"></i>Dark Coders<p>Busy with coding</p></a></li>-->
+      <!--<li><a href="#"> <i class=" fa fa-circle text-muted "></i>Mentaalist <p>I out of control</p></a>-->
+      <!--</li>-->
+    <!--</ul>-->
+  </aside>
+  <aside class="lg-side">
+    <div class="inbox-head">
+      <h3>Skrzynka odbiorcza</h3>
+      <form action="#" class="pull-right position">
+        <div class="input-append">
+          <input type="text" class="sr-input" placeholder="Search Mail">
+          <button class="btn sr-btn" type="button"><i class="fa fa-search"></i></button>
+        </div>
+      </form>
+    </div>
+    <div class="inbox-body">
+      <div class="mail-option">
+        <div class="chk-all">
+          <input type="checkbox" class="mail-checkbox mail-group-checkbox">
+          <div class="btn-group">
+            <a data-toggle="dropdown" href="#" class="btn mini all" aria-expanded="false">
+              All
               <i class="fa fa-angle-down "></i>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="#"><i class="fa fa-pencil"></i> Mark as Read</a></li>
-              <li><a href="#"><i class="fa fa-ban"></i> Spam</a></li>
-              <li class="divider"></li>
-              <li><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>
+              <li><a href="#"> None</a></li>
+              <li><a href="#"> Read</a></li>
+              <li><a href="#"> Unread</a></li>
             </ul>
           </div>
-          <div class="btn-group">
-            <a data-toggle="dropdown" href="#" class="btn mini blue">
-              Move to
-              <i class="fa fa-angle-down "></i>
-            </a>
-            <ul class="dropdown-menu">
-              <li><a href="#"><i class="fa fa-pencil"></i> Mark as Read</a></li>
-              <li><a href="#"><i class="fa fa-ban"></i> Spam</a></li>
-              <li class="divider"></li>
-              <li><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>
-            </ul>
-          </div>
-
-          <ul class="unstyled inbox-pagination">
-            <li><span>1-50 of 234</span></li>
-            <li>
-              <a class="np-btn" href="#"><i class="fa fa-angle-left  pagination-left"></i></a>
-            </li>
-            <li>
-              <a class="np-btn" href="#"><i class="fa fa-angle-right pagination-right"></i></a>
-            </li>
-          </ul>
         </div>
 
-        <table class="table table-inbox table-hover">
-          <tbody>
-          <% @messages.each do |message| %>
-              <tr class="<%= 'unread' if message.unread && @type == :inbox %>">
-                <td class="inbox-small-cells">
-                  <input type="checkbox" class="mail-checkbox">
-                </td>
-                <td class="inbox-small-cells"><i class="fa fa-star"></i></td>
-                <td class="view-message  dont-show"><%= @type == :sent ? "#{message.recipient.name} (#{message.recipient.email})" : "#{message.sender.name} (#{message.sender.email})" %></td>
-                <td class="view-message "><%= message.title %></td>
-                <td class="view-message  text-right"><%= l message.created_at, format: :short %></td>
-              </tr>
-          <% end %>
+        <div class="btn-group">
+          <a data-original-title="Trash" data-placement="top" data-toggle="dropdown" href="#" class="btn mini tooltips">
+            <i class="fa fa-trash-o"></i> Delete</a>
+        </div>
 
-          </tbody>
-        </table>
+        <ul class="unstyled inbox-pagination">
+          <li><span>1-50 of 234</span></li>
+          <li>
+            <a class="np-btn" href="#"><i class="fa fa-angle-left  pagination-left"></i></a>
+          </li>
+          <li>
+            <a class="np-btn" href="#"><i class="fa fa-angle-right pagination-right"></i></a>
+          </li>
+        </ul>
       </div>
-    </aside>
-  </div>
+
+      <table class="table table-inbox table-hover">
+        <tbody>
+        <% @messages.each do |message| %>
+            <tr class="<%= 'unread' if message.unread && @type == :inbox %>" onclick="window.document.location='<%= message_path message %>';" >
+              <td class="inbox-small-cells">
+                <input type="checkbox" class="mail-checkbox">
+              </td>
+
+              <td class="view-message  dont-show"><%= @type == :sent ? "#{message.recipient.name} (#{message.recipient.email})" : "#{message.sender.name} (#{message.sender.email})" %></td>
+              <td class="view-message "><%= message.title %></td>
+              <td class="view-message  text-right"><%= l message.created_at, format: :short %></td>
+            </tr>
+        <% end %>
+
+        </tbody>
+      </table>
+    </div>
+  </aside>
 </div>

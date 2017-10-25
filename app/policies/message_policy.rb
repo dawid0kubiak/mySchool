@@ -26,6 +26,11 @@ class MessagePolicy < ApplicationPolicy
   def destroy?
     index?
   end
+
+  def create_comment?
+    index?
+  end
+
   class Scope < Scope
     def resolve
       scope

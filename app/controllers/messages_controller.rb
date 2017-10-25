@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
   before_action :set_message, only: [:show, :edit, :update, :destroy]
-   # before_action :set_recipient, only: [:index, :new, :create]
+  # before_action :set_recipient, only: [:index, :new, :create]
 
   # GET /messages
   # GET /messages.json
@@ -23,6 +23,15 @@ class MessagesController < ApplicationController
   # GET /messages/1
   # GET /messages/1.json
   def show
+    @comment = Comment.new
+  end
+
+  def create_comment
+    message = current_user.find_messages.find(params[:message_id])
+    message.comments.create(comment_params)
+    authorize message
+    redirect_to message_path message
+
   end
 
   # GET /messages/new
@@ -43,11 +52,11 @@ class MessagesController < ApplicationController
 
     respond_to do |format|
       if @message.save
-        format.html { redirect_to @message, notice: 'Message was successfully created.' }
-        format.json { render :show, status: :created, location: @message }
+        format.html {redirect_to @message, notice: 'Message was successfully created.'}
+        format.json {render :show, status: :created, location: @message}
       else
-        format.html { render :new }
-        format.json { render json: @message.errors, status: :unprocessable_entity }
+        format.html {render :new}
+        format.json {render json: @message.errors, status: :unprocessable_entity}
       end
     end
   end
@@ -57,11 +66,11 @@ class MessagesController < ApplicationController
   def update
     respond_to do |format|
       if @message.update(message_params)
-        format.html { redirect_to @message, notice: 'Message was successfully updated.' }
-        format.json { render :show, status: :ok, location: @message }
+        format.html {redirect_to @message, notice: 'Message was successfully updated.'}
+        format.json {render :show, status: :ok, location: @message}
       else
-        format.html { render :edit }
-        format.json { render json: @message.errors, status: :unprocessable_entity }
+        format.html {render :edit}
+        format.json {render json: @message.errors, status: :unprocessable_entity}
       end
     end
   end
@@ -71,22 +80,26 @@ class MessagesController < ApplicationController
   def destroy
     @message.destroy
     respond_to do |format|
-      format.html { redirect_to messages_url, notice: 'Message was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html {redirect_to messages_url, notice: 'Message was successfully destroyed.'}
+      format.json {head :no_content}
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_message
-      @message = Message.find(params[:id])
-      authorize @message
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_message
+    @message = Message.find(params[:id])
+    authorize @message
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def message_params
-      params.require(:message).permit(:title, :body, :recipient_id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def message_params
+    params.require(:message).permit(:title, :body, :recipient_id)
+  end
+
+  def comment_params
+    params.require(:comment).permit(:title, :body, :recipient_id)
+  end
 
   def set_recipient
     @recipient = User.find params[:user_id]

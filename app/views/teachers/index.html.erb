@@ -9,7 +9,6 @@
     <th>Nazwisko</th>
     <th>Email</th>
     <th>Telefon</th>
-    <th>Akcje</th>
   </tr>
   </thead>
 
@@ -20,13 +19,6 @@
         <td><%= teacher.lastname %></td>
         <td><a href="mailto:<%= teacher.email %>"><%= teacher.email %></a></td>
         <td><%= teacher.phone %></td>
-        <td>
-          <%= teacher.role %>
-          <%# link_to 'Pokaż', teacher, class: 'btn btn-default btn-xs' %>
-          <%# link_to 'Edytuj', edit_teacher_path(teacher), class: 'btn btn-default btn-xs' %>
-          <%# link_to 'Usuń', teacher, method: :delete, data: {:confirm => 'Jesteś pewien?'},
-                      class: 'btn btn-xs btn-danger' %>
-        </td>
       </tr>
   <% end %>
   </tbody>

@@ -17,6 +17,10 @@ class User < ApplicationRecord
     "#{firstname} #{lastname}"
   end
 
+  def find_messages
+    Message.where("sender_id = ? OR recipient_id = ?", id, id)
+  end
+
   def has_role?(role)
     role = Array(role) if role.class != Array
     role.map!(&:to_sym)
