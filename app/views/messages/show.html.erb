@@ -1,31 +1,29 @@
 <div class="jumbotron">
-  <h2><%= "#{@message.sender.name} (#{@message.sender.email})" %></h2>
-  <%= link_to 'Skrzynka odbiorczca', messages_path, class: 'btn btn-primary btn-lg' %></p>
+  <h3><%= "#{@message.sender.name} (#{@message.sender.email})" %></h3>
   <strong>Tytuł:</strong>
   <p>
     <%= @message.title %>
   </p>
-  <strong>Treść:</strong>
-  <div class="panel panel-default">
-    <div class="panel-body">
-  <p>
-    <%= @message.body %>
-  </p>
-    </div>
-    </div>
-  <strong>Odpowiedzi:</strong>
-  <p>
-    <% @message.comments.each do |comment| %>
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <%= comment.body %>
-        </div>
-      </div>
-  <% end %>
-  <%= bootstrap_form_for @comment, url: message_create_comment_path(@message) do |f| %>
-      <%= f.text_area :body, label: 'Treść odpowiedzi', rows: 5 %>
-      <%= f.submit 'Wyślij', class: 'btn btn-success btn-lg' %>
-  <%= link_to 'Skrzynka odbiorczca', messages_path, class: 'btn btn-primary btn-lg' %></p>
-  <% end %>
-  </p>
 </div>
+<%= link_to 'Skrzynka odbiorczca', messages_path, class: 'btn btn-primary' %></p>
+<strong>Treść:</strong>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <%= @message.body %>
+  </div>
+</div>
+<strong>Odpowiedzi:</strong>
+<p>
+  <% @message.comments.each do |comment| %>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <%= comment.body %>
+      </div>
+    </div>
+<% end %>
+<%= bootstrap_form_for @comment, url: message_create_comment_path(@message) do |f| %>
+    <%= f.text_area :body, label: 'Treść odpowiedzi', rows: 5 %>
+    <%= f.submit 'Wyślij', class: 'btn btn-success' %>
+    <%= link_to 'Skrzynka odbiorczca', messages_path, class: 'btn btn-primary' %></p>
+<% end %>
+</p>

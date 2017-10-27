@@ -7,7 +7,7 @@
 one:
   id: 1
   email: test1@example.org
-  name: Dawid
+  firstname: Dawid
   lastname: Nowak
   role: teacher
   encrypted_password: <%= User.new.send(:password_digest, 'zaq12wsx') %>
