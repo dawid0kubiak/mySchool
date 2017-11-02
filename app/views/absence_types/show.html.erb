@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Short name:</strong>
+  <%= @absence_type.short_name %>
+</p>
+
+<p>
+  <strong>Long name:</strong>
+  <%= @absence_type.long_name %>
+</p>
+
+<%= link_to 'Edit', edit_absence_type_path(@absence_type) %> |
+<%= link_to 'Back', absence_types_path %>

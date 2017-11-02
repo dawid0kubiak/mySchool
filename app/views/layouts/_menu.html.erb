@@ -1,17 +1,18 @@
-<%= nav_bar fixed: :top, brand: "Moja szkoła", responsive: true, fluid: true do %>
+<%= nav_bar fixed: :top, brand: 'Moja szkoła', responsive: true, fluid: true do %>
     <%= menu_group do %>
-        <%= menu_item "Start", root_path %>
-        <%= menu_item "Dziennik", diary_index_path %>
+        <%= menu_item 'Start', root_path %>
+        <%= menu_item 'Dziennik', diary_index_path %>
         <%= menu_divider %>
-        <%= menu_item "Nauczyciele", teachers_path %>
-        <%= menu_item "Wiadomości", messages_path %>
-        <%= drop_down "Ustawienia" do %>
-            <%= menu_item "Uczniowie", pupils_path %>
-            <%= menu_item "Przedmioty", subjects_path %>
-            <%= menu_item "Oceny", grades_path %>
-            <%= menu_item "Użytkownicy", users_path %>
-            <%= menu_item "Ustawienia konta", edit_user_registration_path %>
-            <%= menu_item "Wyloguj", destroy_user_session_path, method: :delete %>
+        <%= menu_item 'Nauczyciele', teachers_path %>
+        <%= menu_item 'Wiadomości', messages_path %>
+        <%= drop_down 'Ustawienia' do %>
+            <%= menu_item 'Uczniowie', pupils_path %>
+            <%= menu_item 'Przedmioty', subjects_path %>
+            <%= menu_item 'Oceny', grades_path %>
+            <%= menu_item 'Typ absencji', absence_types_path %>
+            <%= menu_item 'Użytkownicy', users_path %>
+            <%= menu_item 'Ustawienia konta', edit_user_registration_path %>
+            <%= menu_item 'Wyloguj', destroy_user_session_path, method: :delete %>
         <% end %>
     <% end %>
 <% end %>

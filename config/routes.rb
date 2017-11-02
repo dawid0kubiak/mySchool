@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :absence_types
   get 'diary/view'
 
   post 'diary/addgrade'

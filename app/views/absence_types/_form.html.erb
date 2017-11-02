@@ -1,0 +1,8 @@
+<div class="container">
+  <%= bootstrap_form_for(@absence_type) do |f| %>
+      <%= f.text_field :short_name, label: 'Krótka nazwa' %>
+      <%= f.text_field :long_name, label: 'Długa nazwa' %>
+      <%= f.submit 'Zapisz', class: 'btn btn-primary' %>
+      <%= link_to 'Anuluj', absence_types_path, :class => 'btn btn-default' %>
+  <% end %>
+</div>

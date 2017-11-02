@@ -20,8 +20,9 @@
         <td><%= pupil.note %></td>
         <td>
           <% pupil.pupil_grades(@subject).each do |pupil_grade| %>
-              <% btn = pupil_grade.grade.value == 1 ? 'btn btn-danger' : 'btn btn-info' %>
-              <%= link_to '', class: btn, title: (l pupil_grade.updated_at),
+              <%= button_to '',
+                          class: pupil_grade.grade.value == 1 ? 'btn btn-danger' : 'btn btn-info',
+                          title: (l pupil_grade.updated_at),
                           'data-toggle': 'tooltip', 'data-placement': 'right' do %>
                   <%= pupil_grade.grade.short_name %>
               <% end %>
@@ -47,4 +48,4 @@
   </tbody>
 </table>
 
-<%=  %>
+<%= %>

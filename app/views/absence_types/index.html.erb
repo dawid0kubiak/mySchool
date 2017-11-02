@@ -1,0 +1,26 @@
+<div class="page-header">
+  <h1>Typy nieobecności</h1>
+</div>
+<%= link_to 'Nowy', new_absence_type_path, :class => 'btn btn-primary' %>
+<table data-toggle="table" data-search="true">
+  <thead>
+  <tr>
+    <th>Krótka nazwa</th>
+    <th>Długa nazwa</th>
+    <th>Akcje</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @absence_types.each do |absence_type| %>
+      <tr>
+        <td><%= absence_type.short_name %></td>
+        <td><%= absence_type.long_name %></td>
+        <td>
+          <%= link_to 'Edit', edit_absence_type_path(absence_type) %>
+          <%= link_to 'Destroy', absence_type, method: :delete, data: {confirm: 'Are you sure?'} %>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
