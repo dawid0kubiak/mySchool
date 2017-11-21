@@ -5,7 +5,6 @@
         <h5><%= current_user.name %></h5>
         <span><%= current_user.email %></span>
       </div>
-
     </div>
     <div class="inbox-body">
       <a href="#myModal" data-toggle="modal" title="Nowa" class="btn btn-compose">Nowa</a>
@@ -43,14 +42,6 @@
         <%= link_to "<i class='fa fa-trash-o'></i> Kosz".html_safe, messages_path(type: :trash) %>
       </li>
     </ul>
-
-    <!--<ul class="nav nav-pills nav-stacked labels-info ">-->
-      <!--<li><h4>Buddy online</h4></li>-->
-      <!--<li><a href="#"> <i class=" fa fa-circle text-success"></i>Alireza Zare <p>I do not think</p></a></li>-->
-      <!--<li><a href="#"> <i class=" fa fa-circle text-danger"></i>Dark Coders<p>Busy with coding</p></a></li>-->
-      <!--<li><a href="#"> <i class=" fa fa-circle text-muted "></i>Mentaalist <p>I out of control</p></a>-->
-      <!--</li>-->
-    <!--</ul>-->
   </aside>
   <aside class="lg-side">
     <div class="inbox-head">
@@ -65,25 +56,22 @@
     <div class="inbox-body">
       <div class="mail-option">
         <div class="chk-all">
-          <input type="checkbox" class="mail-checkbox mail-group-checkbox">
           <div class="btn-group">
             <a data-toggle="dropdown" href="#" class="btn mini all" aria-expanded="false">
               All
               <i class="fa fa-angle-down "></i>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="#"> None</a></li>
-              <li><a href="#"> Read</a></li>
-              <li><a href="#"> Unread</a></li>
+              <li><a href="#"> Przeczytane</a></li>
+              <li><a href="#"> Nieprzeczytane</a></li>
+              <li><a href="#"> Usuń</a></li>
             </ul>
           </div>
         </div>
-
         <div class="btn-group">
           <a data-original-title="Trash" data-placement="top" data-toggle="dropdown" href="#" class="btn mini tooltips">
-            <i class="fa fa-trash-o"></i> Delete</a>
+            <i class="fa fa-trash-o"></i> Usuń</a>
         </div>
-
         <ul class="unstyled inbox-pagination">
           <li><span>1-50 of 234</span></li>
           <li>
@@ -94,21 +82,19 @@
           </li>
         </ul>
       </div>
-
       <table class="table table-inbox table-hover">
         <tbody>
         <% @messages.each do |message| %>
-            <tr class="<%= 'unread' if message.unread && @type == :inbox %>" onclick="window.document.location='<%= message_path message %>';" >
+            <tr class="<%= 'unread' if message.unread && @type == :inbox %>" >
               <td class="inbox-small-cells">
                 <input type="checkbox" class="mail-checkbox">
               </td>
 
-              <td class="view-message  dont-show"><%= @type == :sent ? "#{message.recipient.name} (#{message.recipient.email})" : "#{message.sender.name} (#{message.sender.email})" %></td>
-              <td class="view-message "><%= message.title %></td>
-              <td class="view-message  text-right"><%= l message.created_at, format: :short %></td>
+              <td class="view-message  dont-show" onclick="window.document.location='<%= message_path message %>';" ><%= @type == :sent ? "#{message.recipient.name} (#{message.recipient.email})" : "#{message.sender.name} (#{message.sender.email})" %></td>
+              <td class="view-message " onclick="window.document.location='<%= message_path message %>';" ><%= message.title %></td>
+              <td class="view-message  text-right" onclick="window.document.location='<%= message_path message %>';" ><%= l message.created_at, format: :short %></td>
             </tr>
         <% end %>
-
         </tbody>
       </table>
     </div>

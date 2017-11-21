@@ -20,13 +20,12 @@
         <td><%= pupil.note %></td>
         <td>
           <% pupil.pupil_grades(@subject).each do |pupil_grade| %>
-              <%= button_to '',
+              <%= link_to '',
                           class: pupil_grade.grade.value == 1 ? 'btn btn-danger' : 'btn btn-info',
                           title: (l pupil_grade.updated_at),
-                          'data-toggle': 'tooltip', 'data-placement': 'right' do %>
-                  <%= pupil_grade.grade.short_name %>
-              <% end %>
-
+                          'data-toggle': 'tooltip', 'data-placement': 'right' do
+                pupil_grade.grade.short_name
+              end %>
               <% @sum_array << pupil_grade.grade.value %>
           <% end %>
         </td>
