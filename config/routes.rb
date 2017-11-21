@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
   resources :absence_types
   get 'diary/view'
-
   post 'diary/addgrade'
-
   get 'diary/subjects'
   get 'diary/index'
 
@@ -23,5 +21,4 @@ Rails.application.routes.draw do
     post 'create_comment'
   end
   root 'pupils#index'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

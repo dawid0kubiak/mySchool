@@ -90,7 +90,9 @@
                 <input type="checkbox" class="mail-checkbox">
               </td>
 
-              <td class="view-message  dont-show" onclick="window.document.location='<%= message_path message %>';" ><%= @type == :sent ? "#{message.recipient.name} (#{message.recipient.email})" : "#{message.sender.name} (#{message.sender.email})" %></td>
+              <td class="view-message  dont-show" onclick="window.document.location='<%= message_path message %>';" >
+                <%= current_user == message.sender ? "#{message.recipient.name} (#{message.recipient.email})" :
+                        "#{message.sender.name} (#{message.sender.email})" %></td>
               <td class="view-message " onclick="window.document.location='<%= message_path message %>';" ><%= message.title %></td>
               <td class="view-message  text-right" onclick="window.document.location='<%= message_path message %>';" ><%= l message.created_at, format: :short %></td>
             </tr>

@@ -8,14 +8,14 @@ class MessagesController < ApplicationController
     @message = Message.new
     @messages = current_user.messages.where(deleted: false)
     @type = :inbox
-    @countmessages = current_user.messages.where(unread: true).count
+    @countmessages = current_user.messages.where(unread: true, deleted: false).count
     case params[:type]
       when 'sent'
         @type = :sent
-        @messages = current_user.sent_messages
+        @messages = current_user.sent_messages.where(deleted: false)
       when 'trash'
         @type = :trash
-        @messages = current_user.messages.where(deleted: true)
+        @messages = current_user.messages.where(deleted: true) && current_user.sent_messages.where(deleted: true)
     end
     authorize @messages
   end
@@ -56,6 +56,15 @@ class MessagesController < ApplicationController
     end
   end
 
+  def update
+    respond_to do |format|
+      if @message.update(message_params)
+        format.html {redirect_to @message, notice: 'Zmieniono status wiadomości.'}
+      else
+        format.html {redirect_to @message, notice: 'Nie udało się zmienić statusu wiadomości.'}
+      end
+    end
+  end
 
   # DELETE /messages/1
   # DELETE /messages/1.json
@@ -76,7 +85,7 @@ class MessagesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def message_params
-    params.require(:message).permit(:title, :body, :recipient_id)
+    params.require(:message).permit(:title, :body, :recipient_id, :unread, :deleted)
   end
 
   def comment_params

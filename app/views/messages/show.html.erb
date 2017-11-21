@@ -5,25 +5,40 @@
     <%= @message.title %>
   </p>
 </div>
-<%= link_to 'Skrzynka odbiorczca', messages_path, class: 'btn btn-primary' %></p>
-<strong>Treść:</strong>
-<div class="panel panel-default">
-  <div class="panel-body">
-    <%= @message.body %>
-  </div>
-</div>
-<strong>Odpowiedzi:</strong>
-<p>
-  <% @message.comments.each do |comment| %>
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <%= comment.body %>
-      </div>
+<%= link_to 'Skrzynka odbiorczca', messages_path, class: 'btn btn-primary' %>
+<div class="row">
+  <strong>Treść:</strong>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <%= @message.body %>
     </div>
-<% end %>
-<%= bootstrap_form_for @comment, url: message_create_comment_path(@message) do |f| %>
-    <%= f.text_area :body, label: 'Treść odpowiedzi', rows: 5 %>
-    <%= f.submit 'Wyślij', class: 'btn btn-success' %>
-    <%= link_to 'Skrzynka odbiorczca', messages_path, class: 'btn btn-primary' %></p>
-<% end %>
+  </div>
+  <strong>Odpowiedzi:</strong>
+  <p>
+    <% @message.comments.each do |comment| %>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <%= comment.body %>
+        </div>
+      </div>
+  <% end %>
+  <%= bootstrap_form_for @comment, url: message_create_comment_path(@message), html: {id: :send} do |f| %>
+      <%= f.text_area :body, label: 'Treść odpowiedzi', rows: 5 %>
+  <% end %>
+
+  <%= form_for @message, url: message_path, html: {id: :unread} do |f| %>
+      <%= f.hidden_field(:unread, value: !@message.unread) %>
+  <% end %>
+
+  <%= form_for @message, url: message_path, html: {id: :deleted} do |f| %>
+      <%= f.hidden_field(:deleted, value: !@message.deleted) %>
+  <% end %>
+
+
+  <%= button_tag 'Wyślij', form: :send, class: 'btn btn-success' %>
+  <%= link_to 'Skrzynka odbiorczca', messages_path, class: 'btn btn-primary' %>
+  <%= button_tag @message.unread ? 'Przeczytane' : 'Nieprzeczytane', form: :unread, class: 'btn btn-warning' %>
+  <%= button_tag @message.unread ? 'Usuń' : 'Przywróć', form: :deleted, class: 'btn btn-danger' %>
+  </p>
+</div>
 </p>
