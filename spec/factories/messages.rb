@@ -22,14 +22,12 @@ FactoryGirl.define do
   end
 
   factory :message2, class: Message do
-    id 2
     title 'Tytuł'
     body 'Treść'
     unread true
     deleted false
     sender_id 1
     recipient_id 1
-
   end
 
   factory :message3, class: Message do
